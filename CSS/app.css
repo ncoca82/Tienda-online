@@ -1,0 +1,284 @@
+body {
+    background-color:white ;
+    display:flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%
+}
+
+main {
+    margin: 1rem 0;
+    width: 100%
+
+}
+
+h1, h2, h3, h4, a, p {
+  /* color: ; */
+}
+
+h1, h2, h3, h4 {
+    /* font-family: ; */
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+a {
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -o-transition: 300ms;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 300ms;
+}
+
+a:hover, a:focus {
+    outline: none;
+    text-decoration: none;
+    outline-offset: 0;
+}
+
+img {
+    object-fit: cover;
+    max-width: 100%;
+}
+
+video {
+    max-width: 100%;
+}
+
+header {
+    display: flex;
+    gap: 2rem;
+
+
+.header-logo {
+}
+
+.header-menu {
+    display: flex-between;
+
+}
+
+.nav {
+    display: flex;
+}
+
+.header-button {
+
+}
+
+.featured-items {
+    display: flex;
+
+}
+
+.featured-item {
+    display: flex;
+}
+
+.slider-image {
+
+}
+
+.slider-title {
+
+}
+
+.slider-button {
+
+}
+
+.featured {
+    display: flex;
+
+}
+
+.featured-title {
+
+}
+
+.featured-description {
+
+}
+
+.featured-image {
+
+}
+
+.featured-item-title {
+
+}
+
+.details {
+    display: flex;
+}
+
+.details-column {
+    display: flex;
+}
+
+.details-item {
+    display: flex;
+}
+
+.details-icon {
+
+}
+
+.details-text {
+
+}
+
+.deteails-title {
+
+}
+
+.details.description {
+
+}
+
+.team {
+
+}
+
+.team-title {
+
+}
+
+.team-description { 
+    
+}
+
+.team-items {
+    display: flex;
+
+}
+
+.team-item {
+    display: flex;
+
+}
+
+.team-item-social-networks {
+    display: flex;
+
+}
+
+.team-item-image {
+
+}
+
+.team-item-title {
+
+}
+
+.team-item-description {
+
+}
+
+.contact {
+
+}
+
+.contact-map {
+
+}
+
+.contact-card {
+
+}
+
+.contact-card-front {
+
+}
+
+.contact-card-title {
+
+}
+
+.contact-card-items {
+
+}
+
+.contact-card-item {
+
+}
+
+.contact-card-item-icon {
+
+}
+
+.contact-card-item-text {
+
+}
+
+.contact-card-flip-button {
+
+}
+
+.contact-card-back {
+
+}
+
+.contact-card-form {
+
+}
+
+.contact-card-send-button {
+
+}
+
+.footer-social-networks {
+    display: flex;
+
+}
+
+.footer-social-networks-item {
+    display: flex;
+
+}
+
+.footer-menu {
+    display: flex;
+
+}
+
+.footer-copyright {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
