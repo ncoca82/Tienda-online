@@ -1,31 +1,52 @@
 header {
     display: flex;
-    gap: 2rem;
+    justify-content:space-between ;
+    font-family: 'Poppins', sans-serif;
+    align-items: baseline;
 
+}
 
 .header-logo {
+    width: 5rem;
+    
+
 }
 
 .header-menu {
-    display: flex-between;
+    display: flex;
+    justify-content: space-between;
 
+    
 }
-
 .nav {
     display: flex;
-}
-
-.header-button {
+    justify-content: space-between;
 
 }
 
-.featured-items {
+ul {
     display: flex;
-
+    justify-content: space-between;
+    flex-direction: row;
 }
+li {
+    margin: 2rem;
+}
+    
+.header-checkout.button{
+    color: hsl(0, 0%, 100%);
+    background-color:hsl(18, 100%, 57%) ;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 16px;
+    font: family 500px; "Poppins",sans-serif;
+    border: none;
+    border-radius: 20%;
+    margin: 5px;
+    padding: 14px 40px;
+}
+.slider {
 
-.featured-item {
-    display: flex;
 }
 
 .slider-image {
@@ -35,6 +56,9 @@ header {
 .slider-title {
 
 }
+.slider-description {
+
+}
 
 .slider-button {
 
@@ -42,18 +66,16 @@ header {
 
 .featured {
     display: flex;
+    justify-content: space-between;
 
 }
-
-.featured-title {
-
-}
-
-.featured-description {
+.featured-items {
 
 }
+.featured-item {
 
-.featured-image {
+}
+.featured-item-image {
 
 }
 
@@ -61,16 +83,24 @@ header {
 
 }
 
+.featured-item-description {
+
+}
+
+
 .details {
     display: flex;
+    justify-content: space-between;
 }
 
 .details-column {
     display: flex;
+    justify-content: space-between;
 }
 
 .details-item {
     display: flex;
+    justify-content: space-between;
 }
 
 .details-icon {
@@ -103,16 +133,19 @@ header {
 
 .team-items {
     display: flex;
+    justify-content: space-between;
 
 }
 
 .team-item {
     display: flex;
+    justify-content: space-between;
 
 }
 
 .team-item-social-networks {
     display: flex;
+    justify-content: space-between;
 
 }
 
@@ -182,16 +215,19 @@ header {
 
 .footer-social-networks {
     display: flex;
+    justify-content: space-between;
 
 }
 
 .footer-social-networks-item {
     display: flex;
+    justify-content: space-between;
 
 }
 
 .footer-menu {
     display: flex;
+    justify-content: space-between;
 
 }
 
