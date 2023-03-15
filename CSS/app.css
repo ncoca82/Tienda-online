@@ -103,7 +103,7 @@ header {
 .header-checkout-button button{
     color: hsl(0, 0%, 100%);
     cursor: pointer;
-    background-color:hsl(18, 100%, 57%) ;
+    background-color:hsl(304, 44%, 19%) ;
     text-align: center;
     text-transform: uppercase;
     font-size: 16px;
@@ -125,16 +125,16 @@ header {
 
 .slider .slider-title{
     position: absolute;
-    top: 20%;
-    right: 5%;
-    width: 40%;
+    top: 19%;
+    right: 27.5%;
+    width: 45%;
 }
 
 .slider .slider-title h2 {
     color: hsl(0, 0%, 100%);
     font-size: 4.5rem;
     text-align: center;
-    -webkit-text-stroke: 0.2rem rgb(90, 58, 16);
+    /*-webkit-text-stroke: 0.2rem rgb(90, 16, 16);*/
 }
 
 .slider .slider-image{
@@ -144,25 +144,29 @@ header {
 .slider-description {
     position: absolute;
     top: 45%;
-    right: 5%;
+    right: 30%;
     width: 40%;
 }
 
-.slider-description p{
+.slider-description p {
     text-align: center;
+    color:hsl(278, 81%, 94%);
+    font-size: 1.6rem;
+    font-weight: 300;
+
 }
 
 .slider .slider-button{
     position: absolute;
     top: 70%;
-    right: 15%;
+    right: 40%;
     width: 20%;
 }
 
 .slider .slider-button button {
     color: hsl(0, 0%, 100%);
     cursor: pointer;
-    background-color: #0084ff;
+    background-color: hsl(297, 36%, 80%);
     text-align: center;
     text-transform: uppercase;
     font-size: 20px;
@@ -178,60 +182,100 @@ header {
 }
 
 .featured {
+    align-items: center;
     display: flex;
+    gap: 2rem;
     justify-content: space-between;
-
+    flex-direction: column;    
+    margin: 5% 15%;
+    width: 70%;
 }
+
 .featured-items {
     display: flex;
+    gap: 5rem;
     justify-content: space-between;
-
-
-}
-.featured-title {
-    position: absolute;
-    top: 20%;
-    right: 5%;
-    width: 40%;
-
-}
-.featured-item-image {
-
 }
 
+.featured-item-image{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.featured-item-image svg{
+    width: 30%;
+}
+
+.featured-title h2 {
+   font-size: 3rem; 
+   text-align: center;
+   text-transform: uppercase;   
+}   
+
+.featured-description {
+    width: 60% ;
+}
+
+.featured-description p{
+    color: hsl(208, 5, 54);
+    font-size: 1.2rem;
+    text-align: center;
+}
+ 
 .featured-item-title {
-
+    margin-bottom: 1rem;
 }
 
-.featured-item-description {
-
+.featured-item-title h3{
+    text-align: center;
 }
 
+.featured-item-description p {
+    text-align: center;
+}
 
 .details {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 4rem;
+    margin: 10%, 10%;
+    padding: 10%;
 }
 
 .details-column {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 25%;
 }
 
 .details-item {
+    align-items: start;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-direction: row;
 }
 
 .details-icon {
-
+    width: 30%;
 }
 
 .details-text {
-
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-.deteails-title {
+.details-text p {
+    font-size: 15px;
+    font-weight: 300;
+    text-align: left;
+    color: hsl(208, 13%, 25%);
+}
+.details-title {
 
 }
 
