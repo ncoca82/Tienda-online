@@ -285,12 +285,13 @@ header {
     height: 24px;
     margin-left: 10px;
     justify-content: right;
-    
+}
 
+.faqs-question-item-flex {
+    display: flex;
+    justify-content: space-between;
 }
-.faqs-question-item-image svg {
-       
-}
+
 .linea {
     border-top: 1px solid rgb(177, 173, 173);
     height: 2px;
