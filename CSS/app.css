@@ -346,15 +346,30 @@ header {
 }
 
 .team {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
 }
 
-.team-title {
+.team-title h1 {
+    text-align: center;
+    margin: 2rem;
 
 }
-
-.team-description { 
+.team-description {
     
+}
+
+.team-description p { 
+    text-align: center;
+    margin: 3rem;
+    font-weight: 300;
+    font-size: 1.2rem;
+    max-width: 710px
+    
+
 }
 
 .team-items {
