@@ -1,0 +1,46 @@
+.details {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin: 10%, 10%;
+    padding: 10%;
+}
+
+.details-column {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 25%;
+}
+
+.details-item {
+    align-items: start;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-direction: row;
+}
+
+.details-icon {
+    width: 30%;
+}
+
+.details-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.details-text p {
+    font-size: 15px;
+    font-weight: 300;
+    text-align: left;
+    color: hsl(208, 13%, 25%);
+}
+.details-title {
+
+}
+
+.details.description {
+
+}

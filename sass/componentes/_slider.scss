@@ -1,0 +1,63 @@
+.slider {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.slider .slider-title{
+    position: absolute;
+    top: 19%;
+    right: 27.5%;
+    width: 45%;
+}
+
+.slider .slider-title h2 {
+    color: hsl(0, 0%, 100%);
+    font-size: 4.5rem;
+    text-align: center;
+    /*-webkit-text-stroke: 0.2rem rgb(90, 16, 16);*/
+}
+
+.slider .slider-image{
+    width: 100%;
+}
+
+.slider-description {
+    position: absolute;
+    top: 45%;
+    right: 30%;
+    width: 40%;
+}
+
+.slider-description p {
+    text-align: center;
+    color:hsl(278, 81%, 94%);
+    font-size: 1.6rem;
+    font-weight: 300;
+
+}
+
+.slider .slider-button{
+    position: absolute;
+    top: 70%;
+    right: 40%;
+    width: 20%;
+}
+
+.slider .slider-button button {
+    color: hsl(0, 0%, 100%);
+    cursor: pointer;
+    background-color: hsl(297, 36%, 80%);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-family: "Poppins",sans-serif;
+    border: none;
+    border-radius: 35px;
+    padding: 1.2rem 5rem;
+    position: absolute;
+}
+
+.slider .slider-button button:hover{
+    background-color: hsl(0, 0%, 32%);
+}
