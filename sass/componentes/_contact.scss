@@ -1,16 +1,31 @@
+
 .contact {
+    height: 50vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
 
 }
 
 .contact-map {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+}
 
+.contact-map iframe{
+    height: 100%;
+    width: 100%;
 }
 
 .contact-card {
-
+    position: absolute;
+    z-index: 1002;
 }
 
 .contact-card-front {
+
 
 }
 
@@ -20,13 +35,15 @@
 
 .contact-card-items {
 
+
 }
 
 .contact-card-item {
 
 }
 
-.contact-card-item-icon {
+.contact-card-item-icon svg {
+
 
 }
 

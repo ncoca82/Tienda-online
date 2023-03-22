@@ -408,6 +408,7 @@ header {
   padding: 1rem 10%;
   width: 80%;
   position: fixed;
+  z-index: 2000;
   top: 0;
   background-color: hsl(20, 30%, 96%);
 }
@@ -484,21 +485,6 @@ main {
 
 .slider .slider-image {
   width: 100%;
-  display: initial;
-  visibility: visible;
-  opacity: 1;
-  animation-delay: 1s;
-  animation-duration: 5s;
-  animation-fill-mode: forwards;
-  animation-name: fadeIn;
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 .slider-description {
@@ -565,20 +551,6 @@ main {
 
 .details-icon {
   width: 30%;
-  animation-name: bounce;
-  animation-duration: 1s;
-  animation-iteration-count: 10;
-}
-@keyframes bounce {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-45px);
-  }
-  100% {
-    transform: translateY(0);
-  }
 }
 
 .details-text {
@@ -592,6 +564,30 @@ main {
   font-weight: 300;
   text-align: left;
   color: hsl(208, 13%, 25%);
+}
+
+.contact {
+  height: 50vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.contact-map {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+
+.contact-map iframe {
+  height: 100%;
+  width: 100%;
+}
+
+.contact-card {
+  position: absolute;
+  z-index: 1002;
 }
 
 .faqs {
@@ -617,7 +613,7 @@ main {
 
 .faqs-header-description p {
   font-weight: 300;
-  color: hsl(208, 5%, 54%);
+  color: hsl(210, 5%, 54%);
   font-size: 1.1rem;
   text-align: center;
 }
@@ -711,37 +707,109 @@ main {
 
 .team {
   width: 100%;
+  height: 800px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: hsl(0, 0%, 97%);
 }
 
 .team-title h1 {
   text-align: center;
-  margin: 2rem;
+  color: #374048;
+  font-size: 48px;
+}
+
+.team-description {
+  display: flex;
+  justify-content: center;
 }
 
 .team-description p {
   text-align: center;
-  margin: 3rem;
+  margin: 1rem;
   font-weight: 300;
   font-size: 1.2rem;
   max-width: 710px;
+  color: hsl(207, 12%, 62%);
 }
 
 .team-items {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
 .team-item {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  padding-bottom: 2rem;
+  text-align: center;
+  background-color: white;
+}
+
+hr {
+  width: 82px;
+  height: 5px;
+  background-color: hsl(0, 2%, 69%);
+  opacity: 20%;
+}
+
+.team-item h4 {
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+
+.team-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
 .team-item-social-networks {
+  position: absolute;
+  z-index: 11;
+  height: 12rem;
+  width: 2rem;
+  border-radius: 20px;
+  margin: 1.5rem;
   display: flex;
+  flex-direction: column;
+  background-color: hsla(208, 13%, 25%, 0.637);
+}
+
+.team-item-social-networks ul svg {
+  position: absolute;
+  z-index: 10;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: hsl(208, 14%, 77%);
+}
+
+.team-item-social-networks ul {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  position: absolute;
+  cursor: pointer;
+  width: 1.5rem;
+  height: 9rem;
+}
+
+.team-item-social-networks li {
+  list-style: none;
+}
+
+.team-item-image img {
+  position: relative;
+}
+
+.team-item-description p {
+  color: hsl(0, 2%, 69%);
+  font-weight: 200;
+  font-size: 14px;
 }
 
 /*# sourceMappingURL=app.css.map */

@@ -1,56 +1,111 @@
+
 .team {
     width: 100%;
+    height: 800px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
+    background-color: hsl(0, 0%, 97%) ;
 }
 
 .team-title h1 {
     text-align: center;
-    margin: 2rem;
+    color: #374048;
+    font-size: 48px;
 
 }
 .team-description {
-    
+    display: flex;
+    justify-content: center;
 }
 
 .team-description p { 
     text-align: center;
-    margin: 3rem;
+    margin: 1rem;
     font-weight: 300;
     font-size: 1.2rem;
-    max-width: 710px
+    max-width: 710px;
+    color: hsl(207, 12%, 62%);
     
-
 }
 
 .team-items {
     display: flex;
-    justify-content: space-between;
-
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
 .team-item {
     display: flex;
-    justify-content: space-between;
-
+    flex-direction: column;
+    padding-bottom: 2rem;
+    text-align: center;
+    background-color: white;
 }
 
-.team-item-social-networks {
+hr {
+    width: 82px;
+    height: 5px;
+    background-color: hsl(0, 2%, 69%);
+    opacity: 20%;
+}
+
+.team-item h4 {
+    font-size: 1.2rem;
+    margin-top: 2rem
+}
+.team-item-text {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+.team-item-social-networks {
+    position: absolute;
+    z-index: 11;
+    height: 12rem;
+    width: 2rem;
+    border-radius: 20px;
+    margin: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    background-color: hsla(208, 13%, 25%, 0.637);
+    
 
 }
+.team-item-social-networks ul svg {
+    position: absolute;
+    z-index: 10;
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: hsl(208, 14%, 77%);
+}
 
-.team-item-image {
+.team-item-social-networks ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    cursor: pointer;
+    width: 1.5rem;
+    height: 9rem;
+}
+.team-item-social-networks li {
+    list-style: none;
+}
 
+.team-item-image img {
+    position: relative;
 }
 
 .team-item-title {
 
 }
 
-.team-item-description {
+.team-item-description p {
+    color: hsl(0, 2%, 69%);
+    font-weight: 200;
+    font-size: 14px;
 
 }
