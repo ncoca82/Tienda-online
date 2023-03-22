@@ -23,6 +23,7 @@
 
 .details-icon {
     width: 30%;
+    @include bounceY (1s,10)
 }
 
 .details-text {
@@ -38,7 +39,7 @@
     color: hsl(208, 13%, 25%);
 }
 .details-title {
-
+    
 }
 
 .details.description {
