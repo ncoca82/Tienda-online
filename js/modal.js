@@ -1,6 +1,11 @@
 export default (() => {
     
-    let buyButton = document.querySelector(".header-checkout-button");
-    console.log(buyButton);
-  
+    let modalButton = document.querySelectorAll(".header-checkout-button");
+    
+    modalButton.forEach( button => {
+        button.addEventListener("click", () => {
+            alert("Hey");
+        });
+    });
 })();
+
