@@ -1,19 +1,37 @@
 .footer-social-networks {
     display: flex;
-    justify-content: space-between;
-
+    justify-content: center;
+    width: 20%;
+    gap:0.5rem;
+    margin-left: 35%;
+    padding: 5%;
 }
 
 .footer-social-networks-item {
     display: flex;
+    justify-content: center;
+
+}
+.footer-social-networks-item svg{
+    fill: rgb(153,206,255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.footer-menu ul{
+    display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 40%;
+    margin-left: 35%;
 
 }
 
-.footer-menu {
+.footer-menu ul li{
+    color: rgb(153,206,255);
     display: flex;
-    justify-content: space-between;
-
 }
 
 .footer-copyright {

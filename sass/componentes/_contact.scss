@@ -20,19 +20,21 @@
 }
 
 .contact-card {
-    left: 38%;
+    left: 35%;
     position: absolute;
     top: 10%;
     z-index: 1002;
     width: 30%;
     height: 80%;
     background-color: hsl(0, 0%, 100%);
+    
 }
 
 .contact-card-front {
     
 }
 .contact-card-title {
+    padding: 3rem;
     
 
     
@@ -43,14 +45,16 @@
     font-size: 1.8rem;
     color: hsl(208, 13%, 25%);
 }
-.contact-card-item-icon h4 {
+.contact-card-item-icon p {
     color:hsl(206, 9%, 70%);
     margin: 2rem;
+    font-weight: 300;
 }
 
 .contact-card-items {
     display: flex;
     flex-direction: column;
+    padding-left: 3rem;
 
 }
 
@@ -75,7 +79,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
+}
+.contact-card-flip-button button {
+    background-color: hsl(209, 100%, 50%);
+    color: white;
+    width: 80%;
+    height: 3rem;
+    border:none;
+}
+.contact-card-flip-button button:hover{
+    background-color: hsl(206, 9%, 70%);
+    cursor: pointer;
 }
 
 .contact-card-back {

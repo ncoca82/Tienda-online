@@ -2,7 +2,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 10%;
+    padding: 0.5rem 10%;
     width: 80%;
     position: fixed;
     z-index: 2000;
@@ -11,7 +11,8 @@ header {
 }
 
 .header-logo img{
-    width: 10rem;
+    width: 2rem;
+    margin: none;
 }
 
 .header-menu ul {
@@ -40,7 +41,7 @@ header {
     font-family: "Poppins",sans-serif;
     border: none;
     border-radius: 30px;
-    padding: 0.5rem 2rem;
+    padding: 0.7rem 2.8rem;
 }
 
 .header-checkout-button button:hover {
