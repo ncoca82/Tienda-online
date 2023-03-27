@@ -1,10 +1,10 @@
-export default ( () => {
-
-    let flipButton = document.querySelectorAll(".contact-card-flip-button");
+export default (() => {
     
-    flipButton.forEach( button => {
-        button.addEventListener("click", () => {
-            alert("Hey");
-        });
+    let flipButtons = document.querySelectorAll('.flip-button');
+  
+    flipButtons.forEach(flipButton => {
+      flipButton.addEventListener('click', () => {
+        flipButton.closest('.flip-card').classList.toggle('active');
+      });
     });
-})();
+  })();

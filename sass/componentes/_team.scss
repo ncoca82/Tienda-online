@@ -1,108 +1,132 @@
-
-.team {
-    width: 100%;
-    height: 800px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: hsl(0, 0%, 97%) ;
+.team{
+    padding: 5rem 0;
 }
 
-.team-title h1 {
+.team-title{
+    margin-bottom: 1rem;
+}
+
+.team-title h2{
+    font-size: 3rem;
     text-align: center;
-    color: #374048;
-    font-size: 48px;
-
-}
-.team-description {
-    display: flex;
-    justify-content: center;
+    text-transform: uppercase;
 }
 
-.team-description p { 
-    text-align: center;
-    margin: 1rem;
-    font-weight: 300;
+.team-description{
+    margin: 0 auto;
+    width: 50%;
+}
+
+.team-description p{
     font-size: 1.2rem;
-    max-width: 710px;
-    color: hsl(207, 12%, 62%);
-    line-height: 2rem;
-    
+    line-height: 1.5;
+    text-align: center;
 }
 
-.team-items {
+.team-description::after{
+    content: "";
+    display: block;
+    height: 0.4rem;
+    margin: 1rem auto 5rem;
+    width: 10%;
+    background-color: hsl(300, 5%, 92%);
+}
+
+.team-items{
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     gap: 2rem;
-    margin-top: 2rem;
+    justify-content: space-between;
+    margin: 0 auto;
+    user-select: none;
+    width: 80%;
 }
 
-.team-item {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 2rem;
-    background-color: white;
-}
-
-hr {
-    width: 82px;
-    height: 5px;
-    background-color: hsl(0, 2%, 69%);
-    opacity: 20%;
-}
-
-.team-item h4 {
-    font-size: 1.2rem;
-    margin-top: 2rem
-}
-.team-item-text {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-}
-.team-item-social-networks {
-    position: absolute;
-    z-index: 11;
-    height: 12rem;
-    width: 2%;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    background-color: hsla(208, 13%, 25%, 0.637);
-    
-
-}
-.team-item-social-networks ul svg {
-    position: absolute;
-    z-index: 10;
-    width: 1.5rem;
-    height: 1.5rem;
-    fill: hsl(208, 14%, 77%);
-    display: flex;
-}
-
-.team-item-social-networks ul {
-    display: flex;
-    flex-direction: column;
-    gap: 2.1rem;
-    position: absolute;
-    cursor: pointer;
-    width: 1.5rem;
-    height: 9rem;
-}
-
-.team-item-image img {
+.team-item{
     position: relative;
 }
 
-.team-item-title {
-
+.team-item-social-networks{
+    align-items: center;
+    background-color: hsla(212, 7%, 59%, 0.7);
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 2rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 2rem;
+    transition: all 0.5s ease-in-out;
 }
 
-.team-item-description p {
-    color: hsl(0, 2%, 69%);
-    font-weight: 200;
-    font-size: 14px;
+.team-item-social-networks.active{
+    background-color: hsl(208, 13%, 25%);
+    height: max-content;
+    padding-bottom: 0.5rem;
+}
 
+.team-item-social-networks.active svg{
+    fill: hsl(210, 7%, 59%);
+    margin: 0.1rem 0;
+    width: 1.3rem;
+}
+
+.hamburger-button {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 2rem;
+    justify-content: center;
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+    width: 2rem;
+}
+  
+.hamburger-button span {
+    background-color: #fff;
+    display: block;
+    height: 2px;
+    margin: 0.1rem auto;
+    transition: all 0.3s ease-in-out;
+    width: 50%;
+}
+
+.hamburger-button.active{
+    position: relative;
+}
+
+.hamburger-button.active span:first-of-type {
+    transform: translateY(5px) rotate(45deg);
+}
+  
+.hamburger-button.active span:nth-of-type(2) {
+    opacity: 0;
+}   
+  
+.hamburger-button.active span:last-of-type {
+    transform: translateY(-5px) rotate(-45deg);
+}
+
+.team-item-social-network svg{
+    cursor: pointer;
+}
+  
+.team-item-image{
+    margin-bottom: 1rem;
+}
+
+.team-item-title{
+    margin-bottom: 1rem;
+}
+
+.team-item-title h3{
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.team-item-description p{
+    font-size: 0.9rem;
+    text-align: center;
 }
