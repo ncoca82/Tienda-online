@@ -132,3 +132,12 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.form-element-label{
+    height: 3rem;
+}
+.form-element-input input{
+    width: 100%;
+    height: 2.8rem;
+    color:hsl(207, 5%, 56%) ;
+    box-sizing: border-box;
+}

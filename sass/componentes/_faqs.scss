@@ -49,15 +49,28 @@
     margin-left: 10px;
     justify-content: right;
 }
+.faqs-question-item-image.active{
+    transform: translateY(5px) rotate(45deg);
+}    
 
 .faqs-question-item-flex {
     display: flex;
     justify-content: space-between;
 }
-
-.linea {
-    border-top: 1px solid rgb(177, 173, 173);
-    height: 2px;
-    padding: 0;
-    margin: 20px auto 0 auto;
+.faqs-question-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
+.faqs-question-item-flex svg{
+    cursor: pointer;
+}
+.faq-paragrafs{
+    visibility: hidden;
+}
+.faq-paragrafs.active{
+    visibility: visible;
+    transition:ease;
+    transition-delay: 2ms;
+}
+
