@@ -1,10 +1,11 @@
 export default (() => {
 
-    let faqQuestionItemImages = document.querySelectorAll('.faqs-question-item-image');
+    let faqButtons = document.querySelectorAll('.plus-minus-toggle');
     
-    faqQuestionItemImages.forEach(faqQuestionItemImage => {
-        faqQuestionItemImage.addEventListener('click', () => {
-            faqQuestionItemImage.closest('.faqs-question-item').querySelector('.faq-paragrafs').classList.toggle("active");
+    faqButtons.forEach(faqButton => {
+        faqButton.addEventListener('click', () => {
+            faqButton.classList.toggle("active");
+            faqButton.closest('.faqs-question-item').querySelector('.faq-paragrafs').classList.toggle("active");
         });
     });
 })();

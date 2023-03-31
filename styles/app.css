@@ -776,10 +776,16 @@ main {
 .faqs-question {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 2rem;
   text-align: flex-start;
   margin: 8%;
   font-weight: 300;
+}
+
+.faq-question-item span {
+  background-color: #fff;
+  display: block;
+  height: 2px;
 }
 
 .faqs-question-item-title {
@@ -798,14 +804,16 @@ main {
 }
 
 .faqs-question-item-flex {
+  border-bottom: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
+  padding: 0.5rem 0;
 }
 
 .faqs-question-item {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .faqs-question-item-flex svg {
@@ -813,13 +821,55 @@ main {
 }
 
 .faq-paragrafs {
-  visibility: hidden;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s;
 }
 
 .faq-paragrafs.active {
-  visibility: visible;
-  transition: ease;
-  transition-delay: 2ms;
+  max-height: 50vh;
+}
+
+.plus-minus-toggle {
+  cursor: pointer;
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+.plus-minus-toggle::before,
+.plus-minus-toggle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 2px;
+  background-color: black;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.plus-minus-toggle::before {
+  transform-origin: center center;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.plus-minus-toggle::after {
+  transform-origin: center center;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.plus-minus-toggle.active::before {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.plus-minus-toggle.active::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.plus-minus-toggle.active::before {
+  opacity: 0;
 }
 
 .featured {
@@ -1025,6 +1075,41 @@ main {
 .modal.active {
   opacity: 1;
   z-index: 2000;
+}
+
+.modal-box {
+  background-color: hsl(0, 0%, 100%);
+  width: 50%;
+  height: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: row;
+}
+
+.modal-box-images {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box-images img {
+  height: 80%;
+}
+
+.modal-box-content {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.modal-content-header {
+  height: 10rem;
+  text-align: center;
 }
 
 /*# sourceMappingURL=app.css.map */

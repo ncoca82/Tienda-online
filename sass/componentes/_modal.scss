@@ -1,0 +1,48 @@
+.modal{
+    background-color: hsla(0, 0%, 100%, 0.8);
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    opacity: 0;
+    top: 0;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+    z-index: -1;
+}
+
+.modal.active{
+    opacity: 1;
+    z-index: 2000;
+}
+.modal-box {
+    background-color: hsl(0, 0%, 100%);
+    width: 50%;
+    height: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+}
+.modal-box-images {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box-images img{
+    height: 80%;
+}
+
+.modal-box-content {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.modal-content-header{
+    height: 10rem;
+    text-align: center;
+}
