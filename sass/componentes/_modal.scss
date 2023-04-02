@@ -16,7 +16,7 @@
 }
 .modal-box {
     background-color: hsl(0, 0%, 100%);
-    width: 50%;
+    width: 55%;
     height: 70%;
     position: absolute;
     top: 50%;
@@ -25,11 +25,24 @@
     display: flex;
     flex-direction: row;
 }
+.close-button{
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+.close-button svg {
+    cursor: pointer;
+    fill: hsl(205, 10%, 75%);
+    width: 1.5rem;
+
+
+}
 .modal-box-images {
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #F8F8F8;
 }
 
 .modal-box-images img{
@@ -42,7 +55,150 @@
     flex-direction: column;
     gap: 2rem;
 }
-.modal-content-header{
+.modal-box-content-header{
     height: 10rem;
+    width: 90%;
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding:3rem 2rem;
+    padding-bottom: 0;
+}
+.modal-box-content-header p{
+    font-size:20px;
+    font-weight:400;
+    text-transform: uppercase;
+    color:hsl(208, 6%, 59%) ;
+
+}
+.modal-box-content-header h1{
+    text-transform: uppercase;
+    font-size:30px;
+    font-weight:700;
+    line-height: 3rem;
+}
+.modal-box-content-header p:not(:first-child){
+    font-size:15px;
+    font-weight:300;
+}
+.modal-box-content-header-price :first-child{
+    color: hsl(208, 6%, 59%);
+    font-size:25px;
+    text-decoration: line-through;
+    font-weight:300;
+}
+.modal-box-content-header-price :not(:first-child){
+    color:hsl(209, 100%, 50%);
+    font-size:32px;
+    font-weight: 600;
+}
+.modal-box-content-header-price::after{
+    content: '';
+    padding:35px;
+}
+.modal-box-content-header-price :last-child{
+    background-color:hsl(29, 100%, 53%) ;
+    color:hsl(0, 0%, 100%);
+    font-size: 11px;
+    text-transform: uppercase;
+    padding: 3px 15px;
+    border-radius: 2px;
+    margin-left: 3px;
+}
+.modal-box-content-header-price{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom:1px solid hsl(0, 12%, 92%);
+    margin-right: 3rem;
+}
+.modal-box-content-text{
+    margin: 0 2rem;
+    line-height: 1.5rem;
+    border-bottom: 1px solid hsl(0, 12%, 92);
+    padding: 2rem 0;
+}
+.modal-box-content-text p{
+    color:hsl(208, 6%, 59%);
+    font-size: 16px;
+    font-weight: 300;
+}
+.modal-box-content-opt{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    border-bottom: 1px solid hsl(0, 12%, 92%);
+    margin:0 2rem;
+    padding-bottom: 1.5rem;
+
+}
+.modal-box-content-opt h4{
+    text-transform: uppercase;
+    color:hsl(204, 4%, 49%) ;
+    font-weight: 400;
+}
+.modal-box-content-opt p{
+    color:hsl(209, 100%, 64%);
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 5rem;
+}
+.modal-box-content-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-box-content-button button{
+    background-color:hsl(209, 100%, 50%);
+    color:hsl(0, 0%, 100%);
+    border: none;
+    width: 90%;
+    height: 5rem;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.modal-box-content-button button:hover{
+    background-color: hsl(0, 0%, 32%);
+}
+.modal-box-flip{
+    background-color: hsl(0, 0%, 100%);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    overflow: hidden;
+}
+.modal-box-flip-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+}
+.section-inputs{
+    display: flex;
+    gap: 2rem;
+    position: relative;
+}
+.section-inputs span {
+    position: absolute;
     text-align: center;
 }
+.section-inputs input{
+    height: 2.5rem;
+    border: 1px solid hsla(204, 4%, 49%, 0.486);
+}
+.modal-box-flip-header button {
+    background-color: hsl(0, 0%, 100%);
+    border:1px solid rgb(189, 199, 206);
+    border-radius: 18px;
+    padding: 0.5rem 2rem;
+    color: rgb(189, 199, 206);
+    font-size: 13px;
+    font-weight: 300;
+}
+
+
