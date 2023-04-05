@@ -3,3 +3,4 @@ import './hamburguer-button.js';
 import './swipeable-element.js';
 import './modal.js';
 import './faqs.js';
+import './minusplus-button.js';

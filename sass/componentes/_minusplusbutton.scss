@@ -1,0 +1,19 @@
+.plus-minus-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.plus-minus-buttons input{
+        width: 20px;
+        text-align: center;
+}
+.plus-minus-buttons input:focus{
+    color: rgba(0, 0, 0, 0.781);
+    outline: none;
+
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+}
