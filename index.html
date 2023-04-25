@@ -21,7 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <!-- Esta diciendo que html esta vinculado a un archivo CSS -->
     <link href="styles/front/app.css" rel="stylesheet">
-    <script type="module" src="js/front/app.js"></script>
+    <script type="module" src="src/index.js"></script>
 <!-- Los elementos de head se auto clausuran, no necesitan etiqueta de cierre -->
 </head>
 
@@ -30,39 +30,12 @@
 
         <!-- Cabecera -->
         <header>
-            <div class="header-logo">
-                <img src="images/logo.png" alt="logo">
-            </div>
-            <div class="header-menu">
-                <nav>
-                    <ul>
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Featured</a></li>
-                        <li><a href="">Details</a></li>
-                        <li><a href="">Team</a></li>
-                        <li><a href=""> Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="header-checkout-button modal-button">
-                <button>Buy it now</button>
-            </div>
+            <logo-component></logo-component>      
+            <menu-component></menu-component>
+            <modal-button-component></modal-button-component>
         </header>
         <main>
-            <div class="slider">
-                <div class="slider-image">
-                    <img src="images/steve-johnson-d7JWDqIhfF4-unsplash.webp" alt="Aceites esenciales">
-                </div>
-                <div class="slider-title">
-                    <h2>The future of thech is here</h2>
-                </div>
-                <div class="slider-description">
-                    <p>Holisticly incentivize revolutionary collaboration and idea sharing before cost effective users. Actual focused services before highly efficient human capital.</p>
-                </div>
-                <div class="slider-button modal-button">
-                    <button>Buy with paypal</button>
-                </div>
-            </div>
+            <slider-component></slider-component>
             <div class="featured">
                 <div class="featured-title">
                     <h2>How it works</h2>

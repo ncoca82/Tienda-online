@@ -48,7 +48,7 @@ ul {
 li {
     box-sizing: border-box;
     flex: 1;
-    width: #{100%/$tab-count};
+    width: calc(100%/$tab-count);
     padding: 0 10px;
     text-align: center;
 }
