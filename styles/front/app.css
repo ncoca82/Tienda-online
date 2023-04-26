@@ -603,11 +603,12 @@ main {
 
 .contact {
   position: relative;
+  height: 70vh;
 }
 
 .contact-map iframe {
   border: none;
-  height: 70vh;
+  height: 100%;
   width: 100%;
 }
 

@@ -35,7 +35,7 @@ class Slider extends HTMLElement {
             .slider .slider-title{
                 position: absolute;
                 top: 19%;
-                right: 22%;
+                right: 20%;
                 width: 60%;
                 justify-content: center;
             }
@@ -44,6 +44,7 @@ class Slider extends HTMLElement {
                 color: hsl(0, 0%, 100%);
                 font-size: 4.5rem;
                 text-align: center;
+                font-family:"Poppins",sans-serif;
             
             }
             
@@ -65,6 +66,7 @@ class Slider extends HTMLElement {
                 font-size: 1.6rem;
                 font-weight: 300;
                 margin:0;
+                font-family:"Poppins",sans-serif;
             }
             
             .slider .slider-button{

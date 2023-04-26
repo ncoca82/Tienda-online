@@ -15,6 +15,7 @@ class Menu extends HTMLElement {
             display: flex;
             gap: 2rem;
             justify-content: space-between;
+
         }
         
         .header-menu ul li {
@@ -22,9 +23,11 @@ class Menu extends HTMLElement {
             font-family: "Poppins",sans-serif;
             list-style: none;
             text-transform: uppercase;
+
         }
         .header-menu ul li a {
             color: hsl(206, 17%, 72%);
+            text-decoration: none;
         }
         </style>
         <div class="header-menu">
