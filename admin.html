@@ -4,29 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script type="module" src="admin/index.js"></script>  
+    <title>Panel de administración</title>
 </head>
 <body>
-    <div class="admin">
-        <div class="admin-header">
-            <div>
-                <img src="logo" alt="">
-            </div>
-            <div>
-                <h1></h1>
-            </div>
-            <div>
-                <div class="hamburger-button">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
+    <header>
+        <logo-component></logo-component>
+        <title-component></title-component> 
+        <ham-button-component></ham-button-component>
+    </header>
+    <main>
+        <button-component></button-component>
+        <info-card-component></info-card-component>
+        <form-component></form-component>
         </div>
-        <div>
-            <button></button>
-        </div>
-
-    </div>
+    </main>  
 </body>
 </html>

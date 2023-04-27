@@ -1,6 +1,6 @@
 import './logo.js';
 import './menu.js';
-import './modalbutton.js';
+import './modalButton.js';
 import './slider.js';
 import './featured.js';
 import './faqs.js';
