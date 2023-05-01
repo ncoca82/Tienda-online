@@ -11,11 +11,19 @@ class Button extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
-            html{
-                background-color:rgb(42,76,187);s
+        .button{
+            display:flex;
+            justify-content:center;
+        }
+            button {
+                width:95%;
+                height:3.5rem;
+                margin-bottom:3rem;
+                cursor:pointer;
             }
-            .button{
-                width:100%;
+            button svg{
+                height:2rem;
+                fill:rgb(109,183,243);
             }
         </style>
         <div class="button">

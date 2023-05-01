@@ -4,20 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script type="module" src="admin/index.js"></script>  
     <title>Panel de administración</title>
 </head>
 <body>
-    <header>
-        <logo-component></logo-component>
-        <title-component></title-component> 
-        <ham-button-component></ham-button-component>
-    </header>
+    <header-component>
+    </header-component>
     <main>
         <button-component></button-component>
-        <info-card-component></info-card-component>
-        <form-component></form-component>
+        <div class="admin-panel">
+            <info-card-component></info-card-component>
+            <form-component></form-component>
         </div>
     </main>  
+    <style>
+        body{
+            background-color: rgb(42,76,187);
+        }
+        .admin-panel{
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem;
+        }
+    </style>
 </body>
 </html>
