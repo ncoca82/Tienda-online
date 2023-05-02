@@ -1,0 +1,51 @@
+class Modal extends HTMLElement {
+
+    constructor() {
+        super();
+        this.shadow = this.attachShadow({mode: 'open'});
+        this.render();
+    }
+
+    render() {
+
+        this.shadow.innerHTML = 
+        `
+        <style>
+        .modal{
+            background-color: hsla(0, 0%, 100%, 0.8);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            opacity: 0;
+            top: 0;
+            transition: all 0.2s ease-in-out;
+            width: 100%;
+            z-index: -1;
+        }
+        .modal.active{
+            opacity: 1;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background-color: hsl(0, 0%, 100%);
+            width: 70%;
+            height: 70%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            overflow: hidden;
+            transform: translate(-50%, -50%);
+        }
+        </style>
+        <div class="modal active">
+            <div class="modal-content">
+                <slot></slot>
+            </div>    
+        </div>
+        `;
+
+    }
+}
+
+customElements.define('modal-component', Modal);
