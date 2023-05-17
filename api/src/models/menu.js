@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    const Slider = sequelize.define('Slider', {
+    const Menu = sequelize.define('Menu', {
         id: {
             autoIncrement: true,
             type: DataTypes.INTEGER,
@@ -7,21 +7,18 @@ module.exports = function(sequelize, DataTypes) {
             primaryKey: true
         },
         name: {
-            type: DataTypes.STRING(255),
             allowNull: false,
+            type: DataTypes.STRING,
             validate: {
                 notNull: {
-                    msg: 'Por favor, rellena el campo "Nombre".'
+                    msg: 'Por favor, rellena el campo "Name".'
                 }
             }
         },
-        visible: {
-            type: DataTypes.BOOLEAN
-          },
         
     }, {
         sequelize,
-        tableName: 'sliders',
+        tableName: 'menus',
         timestamps: true,
         paranoid: true,
         indexes: [
@@ -44,8 +41,8 @@ module.exports = function(sequelize, DataTypes) {
         ]
     });
 
-    Slider.associate = function(models) {
+    Menu.associate = function(models) {
     };
 
-    return Slider;
+    return Menu;
 };

@@ -1,10 +1,10 @@
 const db = require("../../models");
-const Slider = db.Slider;
+const Menu = db.Menu;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    Slider.create(req.body).then(data => {
+    Menu.create(req.body).then(data => {
 
         res.status(200).send(data);
 
@@ -30,9 +30,9 @@ exports.findAll = (req, res) => {
     let whereStatement = {};
     let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
-    Slider.findAndCountAll({
+    Menu.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'name','visible'],
+        attributes: ['id', 'name'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
@@ -58,7 +58,7 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    Slider.findByPk(id).then(data => {
+    Menu.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -79,7 +79,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    Slider.update(req.body, {
+    Menu.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -102,7 +102,7 @@ exports.delete = (req, res) => {
 
     const id = req.params.id;
 
-    Slider.destroy({
+    Menu.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {
