@@ -1,10 +1,10 @@
 const db = require("../../models");
-const LocaleSeo = db.LocaleSeo;
+const LocaleSeoRedirect = db.LocaleSeoRedirect;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
 
-    LocaleSeo.create(req.body).then(data => {
+    LocaleSeoRedirect.create(req.body).then(data => {
 
         res.status(200).send(data);
 
@@ -30,9 +30,9 @@ exports.findAll = (req, res) => {
     let whereStatement = {};
     let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
 
-    LocaleSeo.findAndCountAll({
+    LocaleSeoRedirect.findAndCountAll({
         where: condition, 
-        attributes: ['id', 'language','group','key', 'url' ],
+        attributes: ['id','localeSeoOd', 'language','group','key'],
         limit: limit,
         offset: offset,
         order: [['createdAt', 'DESC']]
@@ -58,7 +58,7 @@ exports.findOne = (req, res) => {
 
     const id = req.params.id;
 
-    LocaleSeo.findByPk(id).then(data => {
+    LocaleSeoRedirect.findByPk(id).then(data => {
 
         if (data) {
             res.status(200).send(data);
@@ -79,7 +79,7 @@ exports.update = (req, res) => {
 
     const id = req.params.id;
 
-    LocaleSeo.update(req.body, {
+    LocaleSeoRedirect.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
@@ -102,7 +102,7 @@ exports.delete = (req, res) => {
 
     const id = req.params.id;
 
-    LocaleSeo.destroy({
+    LocaleSeoRedirect.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {

@@ -13,7 +13,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      
       group: {
         allowNull: false,
         type: Sequelize.STRING,
@@ -21,7 +20,7 @@ module.exports = {
       key: {
         allowNull: false,
         type: Sequelize.INTEGER,
-      }, 
+      },
       subdomain: {
         type: Sequelize.STRING
       },
@@ -41,15 +40,11 @@ module.exports = {
       },
       redirection: {
         type: Sequelize.BOOLEAN,
-        default:0
+        defaultValue: false
       },
       menu: {
         type: Sequelize.BOOLEAN,
-        default:1
-      },
-      subdomain: {
-        allowNull: false,
-        type: Sequelize.STRING
+        defaultValue: true
       },
       changeFrequency: {
         type: Sequelize.STRING
@@ -59,9 +54,12 @@ module.exports = {
       },
       sitemap: {
         type: Sequelize.DECIMAL,
-        default:1
+        defaultValue: 1
       },
-
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+    },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
