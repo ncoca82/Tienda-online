@@ -1,17 +1,17 @@
 module.exports = function(sequelize, DataTypes) {
     const Faq = sequelize.define('Faq', {
         id: {
-            autoIncrement: true,
-            type: DataTypes.INTEGER,
             allowNull: false,
-            primaryKey: true
+            autoIncrement: true,
+            primaryKey: true,
+            type: DataTypes.INTEGER
         },
         name: {
             allowNull: false,
             type: DataTypes.STRING,
             validate: {
                 notNull: {
-                    msg: 'Por favor, rellena el campo "Name".'
+                    msg: 'Por favor, rellena el campo "name".'
                 }
             }
         },
@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             validate: {
                 notNull: {
-                    msg: 'Por favor, rellena el campo "Title".'
+                    msg: 'Por favor, rellena el campo "title".'
                 }
             }
         },
@@ -29,21 +29,14 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.TEXT,
             validate: {
                 notNull: {
-                    msg: 'Por favor, rellena el campo "Description".'
+                    msg: 'Por favor, rellena el campo "description".'
                 }
             }
         },
         order: {
-            allowNull: false,
             type: DataTypes.INTEGER,
-            defaultValue:0,
-            validate: {
-                notNull: {
-                    msg: 'Por favor, rellena el campo "Order".'
-                }
-            }
+            defaultValue: 0
         },
-        
         createdAt: {
             allowNull: false,
             type: DataTypes.DATE
@@ -55,34 +48,13 @@ module.exports = function(sequelize, DataTypes) {
         deletedAt: {
             type: DataTypes.DATE
         }
-        
     }, {
         sequelize,
         tableName: 'faqs',
         timestamps: true,
         paranoid: true,
-        indexes: [
-            {
-                name: "PRIMARY",
-                unique: true,
-                using: "BTREE",
-                fields: [
-                    { name: "id" },
-                ]
-            },
-            {
-                name: "email",
-                unique: true,
-                using: "BTREE",
-                fields: [
-                    { name: "email" },
-                ]
-            },
-        ]
+        indexes: []
     });
-
-    Faq.associate = function(models) {
-    };
 
     return Faq;
 };

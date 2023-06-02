@@ -17,8 +17,18 @@ module.exports = function(sequelize, DataTypes) {
         },
         visible: {
             type: DataTypes.BOOLEAN
-          },
-        
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        deletedAt: {
+            type: DataTypes.DATE
+        }
     }, {
         sequelize,
         tableName: 'sliders',
@@ -32,18 +42,9 @@ module.exports = function(sequelize, DataTypes) {
                 fields: [
                     { name: "id" },
                 ]
-            },
-            {
-                name: "email",
-                unique: true,
-                using: "BTREE",
-                fields: [
-                    { name: "email" },
-                ]
-            },
+            }
         ]
     });
-
     Slider.associate = function(models) {
     };
 

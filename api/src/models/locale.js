@@ -7,83 +7,71 @@ module.exports = function(sequelize, DataTypes) {
             primaryKey: true
         },
         languageAlias: {
+            type: DataTypes.CHAR(2),
             allowNull: false,
-            type: DataTypes.STRING,
             validate: {
                 notNull: {
-                    msg: 'Por favor, rellena el campo "Language Alias".'
+                    msg: 'Por favor, rellena el campo "Alias del idioma".'
                 }
             }
         },
         entity: {
-            allowNull: false,
             type: DataTypes.STRING,
+            allowNull: false,
             validate: {
                 notNull: {
-                    msg: 'Por favor, rellena el campo "Entity".'
+                    msg: 'Por favor, rellena el campo "Entidad".'
                 }
             }
         },
         entityKey: {
-            allowNull: false,
             type: DataTypes.INTEGER,
+            allowNull: false,
+            unsigned: true,
             validate: {
                 notNull: {
-                    msg: 'Por favor, rellena el campo "Entity Keys".'
+                    msg: 'Por favor, rellena el campo "Clave de entidad".'
                 }
             }
         },
         key: {
-            allowNull: false,
             type: DataTypes.STRING,
+            allowNull: false,
             validate: {
                 notNull: {
-                    msg: 'Por favor, rellena el campo "Key".'
+                    msg: 'Por favor, rellena el campo "Clave".'
                 }
             }
         },
         value: {
-            type: DataTypes.STRING
-        },
-    
-        createdAt: {
+            type: DataTypes.STRING,
             allowNull: false,
-            type: DataTypes.DATE
+            validate: {
+                notNull: {
+                    msg: 'Por favor, rellena el campo "Valor".'
+                }
+            }
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false
         },
         updatedAt: {
-            allowNull: false,
-            type: DataTypes.DATE
+            type: DataTypes.DATE,
+            allowNull: false
         },
         deletedAt: {
             type: DataTypes.DATE
         }
-        
     }, {
         sequelize,
         tableName: 'locales',
         timestamps: true,
         paranoid: true,
-        indexes: [
-            {
-                name: "PRIMARY",
-                unique: true,
-                using: "BTREE",
-                fields: [
-                    { name: "id" },
-                ]
-            },
-            {
-                name: "email",
-                unique: true,
-                using: "BTREE",
-                fields: [
-                    { name: "email" },
-                ]
-            },
-        ]
+        indexes: []
     });
-
     Locale.associate = function(models) {
+        // Define las asociaciones con otros modelos aquí
     };
 
     return Locale;

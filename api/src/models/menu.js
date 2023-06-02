@@ -7,15 +7,25 @@ module.exports = function(sequelize, DataTypes) {
             primaryKey: true
         },
         name: {
+            type: DataTypes.STRING(255),
             allowNull: false,
-            type: DataTypes.STRING,
             validate: {
                 notNull: {
-                    msg: 'Por favor, rellena el campo "Name".'
+                    msg: 'Por favor, rellena el campo "Nombre".'
                 }
             }
         },
-        
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        deletedAt: {
+            type: DataTypes.DATE
+        }
     }, {
         sequelize,
         tableName: 'menus',
@@ -29,18 +39,9 @@ module.exports = function(sequelize, DataTypes) {
                 fields: [
                     { name: "id" },
                 ]
-            },
-            {
-                name: "email",
-                unique: true,
-                using: "BTREE",
-                fields: [
-                    { name: "email" },
-                ]
-            },
+            }
         ]
     });
-
     Menu.associate = function(models) {
     };
 
