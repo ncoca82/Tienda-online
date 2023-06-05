@@ -36,12 +36,16 @@ module.exports = function(sequelize, DataTypes) {
         tableName: 'carts',
         timestamps: true,
         paranoid: true,
-        indexes: []
+        indexes: [
+            {
+            unique: true,
+            fields: ['customerId', 'fingerprintId']
+    }]
     });
 
     Cart.associate = function(models) {
-        Cart.belongsTo(models.Customers, { as: 'customer', foreignKey: 'customerId' });
-        Cart.belongsTo(models.Fingerprints, { as: 'fingerprint', foreignKey: 'fingerprintId' });
+        Cart.belongsTo(models.Customer, { as: 'customer', foreignKey: 'customerId' })
+        Cart.belongsTo(models.Fingerprint, { as: 'product', foreignKey: 'fingerprintId' });
     };
 
     return Cart;

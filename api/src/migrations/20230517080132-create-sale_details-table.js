@@ -55,7 +55,7 @@ module.exports = {
         type: Sequelize.DATE
       }
     }).then(() => queryInterface.addIndex('sale_details', ['saleId']))
-      .then(() => queryInterface.addIndex('sale_details', ['productId']))
+      .then(() => queryInterface.addIndex('sale_details', ['productId']));
   },
 
   down: async (queryInterface, Sequelize) => {

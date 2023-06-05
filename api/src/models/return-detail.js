@@ -10,6 +10,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER
         },
         productId: {
+            type: DataTypes.INTEGER,
             references: {
                 model: 'Product',
                 key: 'id'
