@@ -36,10 +36,9 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    });
+    }).then(() => queryInterface.addIndex('sent_emails', ['identifyNumber']));
   },
-
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('sent_emails');
   }
-};
+}

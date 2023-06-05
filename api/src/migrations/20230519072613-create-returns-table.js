@@ -53,7 +53,7 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    });
+    }).then(() => queryInterface.addIndex('returns', ['identifyNumber']));
   },
 
   down: async (queryInterface, Sequelize) => {

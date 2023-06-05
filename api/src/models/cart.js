@@ -40,7 +40,8 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     Cart.associate = function(models) {
-        // Define las asociaciones con otros modelos aquí
+        Cart.belongsTo(models.Customers, { as: 'customer', foreignKey: 'customerId' });
+        Cart.belongsTo(models.Fingerprints, { as: 'fingerprint', foreignKey: 'fingerprintId' });
     };
 
     return Cart;

@@ -28,7 +28,7 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    });
+    }).then(() => queryInterface.addIndex('taxes', ['identifyNumber']));
   },
 
   down: async (queryInterface, Sequelize) => {

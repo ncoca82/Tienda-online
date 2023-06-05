@@ -65,7 +65,7 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    });
+    }).then(() => queryInterface.addIndex('sales', ['identifyNumber']));
   },
 
   down: async (queryInterface, Sequelize) => {

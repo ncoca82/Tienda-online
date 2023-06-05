@@ -67,7 +67,7 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    });
+    }).then(() => queryInterface.addIndex('locale_seos', ['identifyNumber']));
   },
 
   down: async (queryInterface, Sequelize) => {
