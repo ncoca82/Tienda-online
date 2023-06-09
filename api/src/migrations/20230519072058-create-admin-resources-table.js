@@ -1,20 +1,25 @@
-'use strict';
+'use strict'
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('product_categories', {
+    await queryInterface.createTable('admin_resources', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      url: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      visible: {
+      element: {
         allowNull: false,
-        type: Sequelize.BOOLEAN
+        type: Sequelize.STRING
+      },
+      structure: {
+        allowNull: false,
+        type: Sequelize.JSON
       },
       createdAt: {
         allowNull: false,
@@ -23,10 +28,14 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      deletedAt: {
+        type: Sequelize.DATE
       }
-    });
+    })
   },
+
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('product_categories');
+    await queryInterface.dropTable('admin_resources')
   }
-};
+}

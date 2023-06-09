@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -12,11 +12,6 @@ module.exports = {
       name: {
         allowNull: false,
         type: Sequelize.STRING
-      },
-      
-      description: {
-        allowNull: false,
-        type: Sequelize.TEXT
       },
       order: {
         type: Sequelize.INTEGER,
@@ -33,10 +28,10 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    }).then(() => queryInterface.addIndex('faqs', ['identifyNumber']));
+    })
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('faqs');
+    await queryInterface.dropTable('faqs')
   }
-};
+}

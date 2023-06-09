@@ -1,21 +1,22 @@
-'use strict';
+'use strict'
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('social_networks', {
+    await queryInterface.createTable('fingerprints', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        allowNull: false,
-        type: Sequelize.STRING
+      customerId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'customers',
+          key: 'id'
+        }
       },
-      baseUrl: {
+      fingerprint: {
         allowNull: false,
         type: Sequelize.STRING
       },
@@ -30,10 +31,13 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    });
+    })
+      .then(() => queryInterface.addIndex('fingerprints', ['customerId'], {
+        name: 'fingerprint_customerId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('social_networks');
+    await queryInterface.dropTable('fingerprints')
   }
-};
+}

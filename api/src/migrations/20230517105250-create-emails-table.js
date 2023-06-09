@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -9,14 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      fingerprintId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Fingerprint',
-          key: 'id'
-        }
-
-      },
       subject: {
         allowNull: false,
         type: Sequelize.STRING
@@ -25,7 +17,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-    
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -37,10 +28,10 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    }).then(() => queryInterface.addIndex('emails', ['identifyNumber']));
+    })
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('emails');
+    await queryInterface.dropTable('emails')
   }
-};
+}

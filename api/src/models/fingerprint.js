@@ -1,51 +1,52 @@
-module.exports = function(sequelize, DataTypes) {
-    const Fingerprint = sequelize.define('Fingerprint', {
-      id: {
-        autoIncrement: true,
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true
-      },
-      customerId: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'Customer',
-          key: 'id'
-        }
-      },
-      fingerprint: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Por favor, rellena el campo "Fingerprint".'
-          }
-        }
-      },
-      createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false
-      },
-      updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: false
-      },
-      deletedAt: {
-        type: DataTypes.DATE
+module.exports = function (sequelize, DataTypes) {
+  const Fingerprint = sequelize.define('Fingerprint', {
+    id: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
+    customerId: {
+      allowNull: true,
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Customer',
+        key: 'id'
       }
-    }, {
-      sequelize,
-      tableName: 'fingerprints',
-      timestamps: true,
-      paranoid: true,
-      indexes: []
-    });
-  
-    Fingerprint.associate = function(models) {
+    },
+    fingerprint: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+  }, {
+    sequelize,
+    tableName: 'fingerprints',
+    timestamps: true,
+    paranoid: true,
+    indexes: [
+      {
+        name: 'PRIMARY',
+        unique: true,
+        using: 'BTREE',
+        fields: [
+          { name: 'id' }
+        ]
+      },
+      {
+        name: 'fingerprint_customerId_fk',
+        using: 'BTREE',
+        fields: [
+          { name: 'customerId' }
+        ]
+      }
+    ]
+  })
 
-    };
-  
-    return Fingerprint;
-  };
-  
+  Fingerprint.associate = function (models) {
+    Fingerprint.belongsTo(models.Customer, { as: 'customer', foreignKey: 'customerId' })
+    Fingerprint.hasMany(models.Cart, { as: 'carts', foreignKey: 'fingerprintId' })
+    Fingerprint.hasMany(models.Contact, { as: 'contacts', foreignKey: 'fingerprintId' })
+  }
+
+  return Fingerprint
+}

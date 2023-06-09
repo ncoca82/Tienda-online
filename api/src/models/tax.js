@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   const Tax = sequelize.define('Tax', {
     id: {
       autoIncrement: true,
@@ -24,24 +24,35 @@ module.exports = function(sequelize, DataTypes) {
         }
       }
     },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    deletedAt: {
-      type: DataTypes.DATE
+    multiplier: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Por favor, rellena el campo "Multiplicador".'
+        }
+      }
     }
   }, {
     sequelize,
     tableName: 'taxes',
     timestamps: true,
     paranoid: true,
-    indexes: []
-  });
+    indexes: [
+      {
+        name: 'PRIMARY',
+        unique: true,
+        using: 'BTREE',
+        fields: [
+          { name: 'id' }
+        ]
+      }
+    ]
+  })
 
-  return Tax;
-};
+  Tax.associate = function (models) {
+    Tax.hasMany(models.Price, { as: 'prices', foreignKey: 'taxId' })
+  }
+
+  return Tax
+}

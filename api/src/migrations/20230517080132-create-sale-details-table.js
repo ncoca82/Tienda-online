@@ -1,44 +1,51 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('sale_errors', {
+    await queryInterface.createTable('sale_details', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      paymentMethodId: {
-        allowNull: false,
+      saleId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'PaymentMethod',
+          model: 'sales',
           key: 'id'
         }
       },
-      customerId: {
-        allowNull: false,
+      productId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Customer',
+          model: 'products',
           key: 'id'
         }
       },
-      cartId: {
-        allowNull: false,
+      localeId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'Cart',
+          model: 'locales',
           key: 'id'
         }
       },
-      errorCode: {
+      basePrice: {
+        allowNull: false,
+        type: Sequelize.DECIMAL(6, 2)
+      },
+      taxPrice: {
+        allowNull: false,
+        type: Sequelize.DECIMAL(6, 2)
+      },
+      unitOfMeasurement: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      quantity: {
         allowNull: false,
         type: Sequelize.INTEGER
-      },
-      errorMessage: {
-        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -51,10 +58,16 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    }).then(() => queryInterface.addIndex('sale_errors', ['identifyNumber']));
+    })
+      .then(() => queryInterface.addIndex('sale_details', ['saleId'], {
+        name: 'saleDetail_saleId_fk'
+      }))
+      .then(() => queryInterface.addIndex('sale_details', ['productId'], {
+        name: 'saleDetail_productId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('sale_errors');
+    await queryInterface.dropTable('sale_details')
   }
-};
+}

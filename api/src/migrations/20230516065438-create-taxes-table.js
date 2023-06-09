@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -17,6 +17,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.BOOLEAN
       },
+      multiplier: {
+        allowNull: false,
+        type: Sequelize.DECIMAL(10, 2)
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -28,10 +32,10 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    }).then(() => queryInterface.addIndex('taxes', ['identifyNumber']));
+    })
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('taxes');
+    await queryInterface.dropTable('taxes')
   }
-};
+}

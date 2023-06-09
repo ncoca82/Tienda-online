@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Company',
+          model: 'companies',
           key: 'id'
         }
       },
@@ -25,7 +25,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-    
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -37,10 +36,13 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    }).then(() => queryInterface.addIndex('employees', ['identifyNumber']));
+    })
+      .then(() => queryInterface.addIndex('employees', ['companyId'], {
+        name: 'employee_companyId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('employees');
+    await queryInterface.dropTable('employees')
   }
-};
+}

@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 
@@ -12,13 +12,13 @@ module.exports = {
       },
       languageAlias: {
         allowNull: false,
-        type: Sequelize.CHAR(2),
+        type: Sequelize.CHAR(2)
       },
       entity: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
-      entityKey: {
+      entityId: {
         allowNull: false,
         unsigned: true,
         type: Sequelize.INTEGER
@@ -42,10 +42,13 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    });
+    })
+      .then(() => queryInterface.addIndex('locales', ['languageAlias', 'entity', 'entityId', 'key'], {
+        name: 'locale_languageAlias_entity_entityId_key_idx'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('locales');
+    await queryInterface.dropTable('locales')
   }
-};
+}

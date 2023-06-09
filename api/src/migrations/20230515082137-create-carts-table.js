@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('fingerprints', {
+    await queryInterface.createTable('carts', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,21 +10,17 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       customerId: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Customer',
+          model: 'customers',
           key: 'id'
-        },
-    
+        }
       },
-      fingerprint: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        validate: {
-          notNull: {
-            msg: 'Por favor, rellena el campo "Fingerprint".'
-          }
+      fingerprintId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'fingerprints',
+          key: 'id'
         }
       },
       createdAt: {
@@ -38,10 +34,16 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    }).then(() => queryInterface.addIndex('fingerprints', ['customerId']));
+    })
+      .then(() => queryInterface.addIndex('carts', ['customerId'], {
+        name: 'cart_customerId_fk'
+      }))
+      .then(() => queryInterface.addIndex('carts', ['fingerprintId'], {
+        name: 'cart_fingerprintId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('fingerprints');
+    await queryInterface.dropTable('carts')
   }
-};
+}

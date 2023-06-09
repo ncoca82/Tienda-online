@@ -1,29 +1,31 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('sent_emails', {
+    await queryInterface.createTable('products', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      customerId: {
+      productCategoryId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
-          model: 'Customer',
+          model: 'product_categories',
           key: 'id'
-        },
+        }
       },
-      emailId: {
-        type: Sequelize.INTEGER,
+      unitOfMeasurement: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      name: {
         allowNull: false,
-        references: {
-          model: 'Email',
-          key: 'id'
-        },
+        type: Sequelize.STRING
+      },
+      featured: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -36,9 +38,13 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    }).then(() => queryInterface.addIndex('sent_emails', ['identifyNumber']));
+    })
+      .then(() => queryInterface.addIndex('products', ['productCategoryId'], {
+        name: 'product_productCategoryId_fk'
+      }))
   },
+
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('sent_emails');
+    await queryInterface.dropTable('products')
   }
 }

@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('carts', {
+    await queryInterface.createTable('sent_emails', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,15 +11,17 @@ module.exports = {
       },
       customerId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'Customer',
+          model: 'customers',
           key: 'id'
         }
       },
-      fingerprintId: {
+      emailId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
-          model: 'Fingerprint',
+          model: 'emails',
           key: 'id'
         }
       },
@@ -34,11 +36,16 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    }).then(() => queryInterface.addIndex('carts', ['customerId']))
-      .then(() => queryInterface.addIndex('carts', ['fingerprintId']))
+    })
+      .then(() => queryInterface.addIndex('sent_emails', ['customerId'], {
+        name: 'sentEmail_customerId_fk'
+      }))
+      .then(() => queryInterface.addIndex('sent_emails', ['emailId'], {
+        name: 'sentEmail_emailId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('carts');
+    await queryInterface.dropTable('sent_emails')
   }
-};
+}

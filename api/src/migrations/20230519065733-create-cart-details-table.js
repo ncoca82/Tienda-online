@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Cart',
+          model: 'carts',
           key: 'id'
         }
       },
@@ -21,13 +21,17 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Product',
+          model: 'products',
           key: 'id'
         }
       },
-      productName: {
-        type: Sequelize.STRING,
-        allowNull: false
+      localeId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'locales',
+          key: 'id'
+        }
       },
       basePrice: {
         type: Sequelize.DECIMAL(6, 2),
@@ -55,10 +59,19 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE
       }
-    }).then(() => queryInterface.addIndex('cart_details', ['identifyNumber']));
+    })
+      .then(() => queryInterface.addIndex('cart_details', ['cartId'], {
+        name: 'cartDetail_cartId_fk'
+      }))
+      .then(() => queryInterface.addIndex('cart_details', ['productId'], {
+        name: 'cartDetail_productId_fk'
+      }))
+      .then(() => queryInterface.addIndex('cart_details', ['localeId'], {
+        name: 'cartDetail_localeId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('cart_details');
+    await queryInterface.dropTable('cart_details')
   }
-};
+}
