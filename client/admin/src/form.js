@@ -3,7 +3,39 @@ class Form extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-        this.render();
+    }
+
+    static get observedAttributes () { return ['url'] }
+
+    async connectedCallback () {
+
+        document.addEventListener("loadData", async event => {
+            await this.loadData(event.detail.id)
+        });
+    }  
+    
+    async attributeChangedCallback (name, oldValue, newValue) {
+        await this.render()
+    }
+
+    async loadData(id) {
+        try {
+            const response = await fetch(`http://127.0.0.1:8080/api${this.getAttribute('url')}/${id}`)
+            this.data = await response.json()
+
+            Object.entries(this.data).forEach( ([key, value]) => {
+                
+                const form = this.shadow.querySelector("#form");
+                const inputElement = form.elements[key];
+                if (inputElement) {
+                    inputElement.value = value;
+                }
+                console.log(`${key}: ${value}`);
+            });
+
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     render() {
@@ -103,7 +135,8 @@ class Form extends HTMLElement {
                         </div>
                     </div>
                 </div>
-                <form id="form" action="" method="">
+                <form id="form">
+                    <input type="hidden" name="id"/>
                     <div class="section-inputs">
                         <label class="section-inputs-form" for="name">
                             <span>Nombre</span>
@@ -135,11 +168,14 @@ class Form extends HTMLElement {
 
             event.preventDefault();
 
+            let id = form.elements.id.value;
             let formData = new FormData(form);
             let formDataJson = Object.fromEntries(formData.entries());
-    
-            fetch('http://127.0.0.1:8080/api/admin/users', {
-                method: 'POST',
+            let url = id ? `http://127.0.0.1:8080/api/admin/users/${id}` : `http://127.0.0.1:8080/api/admin/users`
+            let method = id ? 'PUT':'POST'
+            
+            fetch(url, {
+                method: method,
                 headers: {
                     'Content-Type': 'application/json',
                 },
