@@ -173,6 +173,7 @@ class Form extends HTMLElement {
             let formDataJson = Object.fromEntries(formData.entries());
             let url = id ? `http://127.0.0.1:8080/api/admin/users/${id}` : `http://127.0.0.1:8080/api/admin/users`
             let method = id ? 'PUT':'POST'
+            delete formDataJson.id
             
             fetch(url, {
                 method: method,

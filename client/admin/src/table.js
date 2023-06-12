@@ -4,11 +4,13 @@ class InfoCard extends HTMLElement {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
         this.data = [];
+        this.currentPage = 1;
     }
 
     static get observedAttributes () { return ['url'] }
 
     async connectedCallback () {
+
         document.addEventListener("refreshTable", async event => {
             await this.loadData()
             await this.render()
@@ -22,8 +24,14 @@ class InfoCard extends HTMLElement {
 
     loadData = async() => {
         try {
-            const response = await fetch(`http://127.0.0.1:8080/api${this.getAttribute('url')}`)
-            this.data = await response.json()
+            const response = await fetch(`http://127.0.0.1:8080/api${this.getAttribute('url')}`);
+            this.data = await response.json();
+
+            const paginationResponse = await fetch(`http://127.0.0.1:8080/api${this.getAttribute('url')}?page=${this.currentPage}`);
+            const paginationData = await paginationResponse.json();
+            this.currentPage = paginationData.currentPage;
+            this.totalPages = paginationData.totalPages;
+
         } catch (err) {
             console.log(err)
         }
@@ -38,28 +46,26 @@ class InfoCard extends HTMLElement {
             }
             .card{
                 with:100%;
-                height: 9rem;
                 margin-bottom: 2.5rem;
                 
             }
             .card-header{
                 background-color: hsl(207, 85%, 69%);
-                height: 3.5rem;
+                height: 4rem;
                 display: flex;
                 justify-content: end;
-                gap: 1rem;
                 cursor: pointer;
             }
             .card-header svg{
-                height: 3rem;
+                height: 3.5rem;
                 fill: hsl(0, 0%, 100%);
             }
             .card-info{
-                height: 50%;
                 background-color: rgb(113,139,224);
                 color: white;
-                padding: 1rem 0;
+                padding: 2rem 1.5rem;
                 box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+                margin: 0;
             }
             
             .card-info-tag{
@@ -76,13 +82,32 @@ class InfoCard extends HTMLElement {
                 list-style: none;
                 
             }
+            .button{
+                width: 100%;
+            }
+            button{
+                width: 20%;
+                height: 50px;
+                font-size: 18px;
+                margin: 14px;
+            }
+            button:hover{
+                cursor: pointer;
+            }
         </style>
         <div class="cards">
-            
+        </div>
+        <div class="button">
+            <button class="primera">Primera</button>
+            <button class="anterior">Anterior</button>
+            <button class="siguiente">Siguiente</button>
+            <button class="ultima">Última</button>
         </div>
         `;
+        
 
         this.data.rows.forEach(element => {
+
             let cards = this.shadow.querySelector('.cards');
             let card = document.createElement('div');
             card.classList.add('card');
@@ -116,7 +141,7 @@ class InfoCard extends HTMLElement {
     renderButtons = async() => {
 
         let loadDataButtons = this.shadow.querySelectorAll('.load-data');
-        let deleteButtons = this.shadow.querySelectorAll('.delete');
+
 
         loadDataButtons.forEach(loadDataButton => {
                         
@@ -129,17 +154,32 @@ class InfoCard extends HTMLElement {
 
             });
         });
+        let deleteButtons = this.shadow.querySelectorAll('.delete');
 
         deleteButtons.forEach(deleteButton => {
             deleteButton.addEventListener('click', () => {
-                document.dispatchEvent(new CustomEvent('deleteData', {
+                document.dispatchEvent( new CustomEvent('openModal',{ 
                     detail: {
+                        
                         id: deleteButton.dataset.id
                     }
                 }));
             });
         });
-    }
-}
+        
+        let primerapagina = this.shadow.querySelector('.primera'); 
+        let anteriorpagina = this.shadow.querySelector('.anterior');
+        let siguientepagina = this.shadow.querySelector('.siguiente');
+        let ultimapagina = this.shadow.querySelector('.ultima'); 
+        
+        primerapagina.addEventListener('click', () => {
+            if( this.currentPage !==1) {
+                this.currentPage = 1;
+                this.loadData();
+                this.render();
+            }
+            console.log('HOla');
+    });
+    
 
 customElements.define('info-card-component', InfoCard);
