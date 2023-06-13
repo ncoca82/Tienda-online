@@ -5,6 +5,7 @@ class InfoCard extends HTMLElement {
         this.shadow = this.attachShadow({mode: 'open'});
         this.data = [];
         this.currentPage = 1;
+        this.totalPages = null;
     }
 
     static get observedAttributes () { return ['url'] }
@@ -25,19 +26,19 @@ class InfoCard extends HTMLElement {
     loadData = async() => {
         try {
             const response = await fetch(`http://127.0.0.1:8080/api${this.getAttribute('url')}`);
-            this.data = await response.json();
-
-            const paginationResponse = await fetch(`http://127.0.0.1:8080/api${this.getAttribute('url')}?page=${this.currentPage}`);
-            const paginationData = await paginationResponse.json();
-            this.currentPage = paginationData.currentPage;
-            this.totalPages = paginationData.totalPages;
+            const data = await response.json()
+            this.data = data;
+            this.currentPage = data.meta.currentPage
+            this.totalPages = data.meta.pages
 
         } catch (err) {
             console.log(err)
         }
+        
     }
 
-    render() {
+    async render() {
+
         this.shadow.innerHTML = 
         `
         <style>
@@ -45,7 +46,7 @@ class InfoCard extends HTMLElement {
                 width: 60vh;
             }
             .card{
-                with:100%;
+                width:100%;
                 margin-bottom: 2.5rem;
                 
             }
@@ -135,7 +136,72 @@ class InfoCard extends HTMLElement {
         });
         
         this.renderButtons();
+        this.renderPagination();
     
+    }
+
+    renderPagination() {
+
+        let primerapagina = this.shadow.querySelector('.primera'); 
+        let anteriorpagina = this.shadow.querySelector('.anterior');
+        let siguientepagina = this.shadow.querySelector('.siguiente');
+        let ultimapagina = this.shadow.querySelector('.ultima'); 
+        
+        primerapagina.addEventListener('click', async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:8080/api/admin/users?page=1');
+                const data = await response.json();
+                this.data = data;
+                this.currentPage = parseInt(data.meta.currentPage);
+
+                this.render();
+
+            } catch (err) {
+                console.log(err);
+            }
+        });
+
+        anteriorpagina.addEventListener('click', async () => {
+            try {
+                if (this.currentPage > 1) {
+                    const response = await fetch(`http://127.0.0.1:8080/api/admin/users?page=${this.currentPage - 1}`);
+                    const data = await response.json();
+                    this.data = data;
+                    this.currentPage = parseInt(data.meta.currentPage);
+
+                    this.render();
+                }
+                } catch (err) {
+                console.log(err);
+            }
+        });
+
+        siguientepagina.addEventListener('click', async () => {
+            try {
+                if (this.currentPage <  this.data.meta.pages) {
+                    const response = await fetch(`http://127.0.0.1:8080/api/admin/users?page=${this.currentPage + 1}`);
+                    const data = await response.json();
+                    this.data = data;
+                    this.currentPage = parseInt(data.meta.currentPage);
+
+                    this.render();
+                }
+            } catch (err) {
+                console.log(err);
+                }
+        });
+
+        ultimapagina.addEventListener('click', async () => {
+                try {
+                    const response = await fetch(`http://127.0.0.1:8080/api/admin/users?page=${this.totalPages}`);
+                    const data = await response.json();
+                    this.data = data;
+                    this.currentPage = parseInt(data.meta.currentPage);
+                    this.render();
+                } catch (err) {
+                    console.log(err);
+            }
+        });  
     }
 
     renderButtons = async() => {
@@ -151,7 +217,6 @@ class InfoCard extends HTMLElement {
                         id: loadDataButton.dataset.id
                     }
                 }));
-
             });
         });
         let deleteButtons = this.shadow.querySelectorAll('.delete');
@@ -166,20 +231,9 @@ class InfoCard extends HTMLElement {
                 }));
             });
         });
-        
-        let primerapagina = this.shadow.querySelector('.primera'); 
-        let anteriorpagina = this.shadow.querySelector('.anterior');
-        let siguientepagina = this.shadow.querySelector('.siguiente');
-        let ultimapagina = this.shadow.querySelector('.ultima'); 
-        
-        primerapagina.addEventListener('click', () => {
-            if( this.currentPage !==1) {
-                this.currentPage = 1;
-                this.loadData();
-                this.render();
-            }
-            console.log('HOla');
-    });
-    
+    };
+}
+
+
 
 customElements.define('info-card-component', InfoCard);

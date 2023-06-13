@@ -27,6 +27,7 @@ class Form extends HTMLElement {
                 
                 const form = this.shadow.querySelector("#form");
                 const inputElement = form.elements[key];
+
                 if (inputElement) {
                     inputElement.value = value;
                 }
@@ -85,7 +86,9 @@ class Form extends HTMLElement {
                 color:#808080 ;
                 cursor: pointer;
             }
-            
+            .validation-errors{
+                border-color: red;
+            }
             .section-inputs-form {
                 position: relative;
                 margin: 1rem 0;
@@ -135,6 +138,9 @@ class Form extends HTMLElement {
                         </div>
                     </div>
                 </div>
+                <div class="validation-errors"
+                <ul></ul>
+                </div>
                 <form id="form">
                     <input type="hidden" name="id"/>
                     <div class="section-inputs">
@@ -181,15 +187,28 @@ class Form extends HTMLElement {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formDataJson)
+
             }).then(response => {
+
                 return response.json();
+
             }).then(data => {
+
                 document.dispatchEvent(new CustomEvent('refreshTable'));
 
                 form.reset();
 
-            }).catch(error => {
-                console.log(error);
+            }).catch(async error => {
+                const data = await error.json();
+
+                console.log(data);
+                
+                data.message.forEach(error => {
+                    console.log(error.message);
+                    let form = this.shadow.querySelector('form');
+                    form.elements[error.path].classList.add('validation-error');
+                })
+
             });
 
         });
