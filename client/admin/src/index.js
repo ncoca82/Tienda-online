@@ -3,3 +3,4 @@ import './button.js';
 import './table.js';
 import './form.js';
 import './modal.js';
+import './login.js';
