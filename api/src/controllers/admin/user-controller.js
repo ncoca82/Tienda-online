@@ -22,7 +22,14 @@ exports.findAll = (req, res) => {
     let offset = (page - 1) * limit;
 
     let whereStatement = {};
-    let condition = Object.keys(whereStatement).length > 0 ? {[Op.and]: [whereStatement]} : {};
+
+    for (const key in req.query) {
+        if (req.query[key] != '' && key != 'page' && key != 'size') {
+            whereStatement[key] = { [Op.substring]: req.query[key] }
+        }
+    }
+
+    const condition = Object.keys(whereStatement).length > 0 ? { [Op.and]: [whereStatement] } : {}
 
     User.findAndCountAll({
         where: condition, 

@@ -39,20 +39,26 @@ class Login extends HTMLElement {
         h2 {
             margin-bottom: 20px;
             font-size: 40px;
+            color:white;
         }
         .input{
             display: flex;
             flex-direction: column;
-            width: 20%;
+            width: 100%;
             align-items:center;
             gap:0.5rem;
         }
-        .boton{
-            margin:20px;
+        button{
+            width: 100%;
+            padding:20px;
+            margin:2rem;
+            font-size:20px;
+            font-weight:bold;
         }
 
         label {
             font-size: 40px;
+            color:white;
         }
         </style>
 
@@ -69,7 +75,7 @@ class Login extends HTMLElement {
                 <input type="password" id="password" name="password" required>
             </div>
             <div class="input boton">    
-                <input class="submit" type="submit" value="Login">
+                <button class="submit">Submit</button>
             </div>    
             </form>
     </div>
@@ -88,7 +94,7 @@ class Login extends HTMLElement {
     }
 
     async function login(username, password) {
-        const url = `http://127.0.0.1:8080/api/admin/users/${id}`; 
+        const url = `http://127.0.0.1:8080/api/auth/users/signin${id}`; 
 
     try {
             const response = await fetch(url, {

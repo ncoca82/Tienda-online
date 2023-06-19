@@ -16,7 +16,17 @@ class InfoCard extends HTMLElement {
             await this.loadData()
             await this.render()
         });
+
+        document.addEventListener("filterResults", async event => {
+            this.data = event.detail.data
+            await this.render()
+        });
+
+
+
+
     }
+
     async attributeChangedCallback (name, oldValue, newValue) {
 
         await this.loadData()
@@ -140,7 +150,7 @@ class InfoCard extends HTMLElement {
     
     }
 
-    renderPagination() {
+    renderPagination =  () => {
 
         let primerapagina = this.shadow.querySelector('.primera'); 
         let anteriorpagina = this.shadow.querySelector('.anterior');

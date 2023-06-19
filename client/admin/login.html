@@ -7,10 +7,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <script type="module" src="dist/index.js"></script>  
-    <script type="module" src="admin/src/login.js" ></script>
+    <script type="module" src="./dist/index.js"></script>  
 
 </head>
 <body>
     <login-component url="/admin/users"></login-component>
+    <style>
+        body{
+            background-color: rgb(42,76,187);
+        }
+        .admin-panel{
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem;
+        }
+    </style>
 </body>    

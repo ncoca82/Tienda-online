@@ -40,7 +40,7 @@ module.exports = function (sequelize, DataTypes) {
         ]
       },
       {
-        name: 'product_productCategoryId_fk',
+        name: 'productCategoryId',
         using: 'BTREE',
         fields: [
           { name: 'productCategoryId' }
@@ -49,7 +49,7 @@ module.exports = function (sequelize, DataTypes) {
     ]
   })
 
-  Product.associate = function (models) {
+    Product.associate = function (models) {
     Product.belongsTo(models.ProductCategory, { as: 'productCategory', foreignKey: 'productCategoryId' })
     Product.hasMany(models.CartDetail, { as: 'cartDetails', foreignKey: 'productId' })
     Product.hasMany(models.Price, { as: 'prices', foreignKey: 'productId' })
