@@ -1,6 +1,7 @@
 import './header.js';
-import './button.js';
+import './filter.js';
 import './table.js';
 import './form.js';
 import './modal.js';
 import './login.js';
+import './image-gallery.js';

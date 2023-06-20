@@ -59,6 +59,7 @@ class Form extends HTMLElement {
                 align-items: center;
                 gap: 1rem;
                 max-width: 100%;
+                overflow:hidden;
             }
             .form-tabs :first-child{
                 color: white;
@@ -85,6 +86,14 @@ class Form extends HTMLElement {
                 font-size: 24px;
                 color:#808080 ;
                 cursor: pointer;
+                margin: 0;
+                padding: 0;
+            }
+
+            button{
+                overflow: hidden;
+                border: none;
+        
             }
             .validation-errors{
                 border-color: red;
@@ -126,8 +135,12 @@ class Form extends HTMLElement {
         <div class="form">
             <div class="form-header">
                 <div class="form-tabs">
-                    <p>Principal</p>
-                    <p>Imágenes</p>
+                    <button>
+                        <p>Principal</p>
+                    </button>
+                    <button>    
+                        <p>Imágenes</p>
+                    </button>    
                 </div>
                 <div class="form-icons">
                     <div id="clean-button">

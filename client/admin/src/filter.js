@@ -128,57 +128,69 @@ class Filter extends HTMLElement {
     }
 
     renderFilter = () => {
+
         const filterButton = this.shadow.querySelector(".filter-button")
 
         filterButton.addEventListener("click", () => {
-            if(filterButton.classList.contains("active")) {
+            const filterForm = this.shadow.querySelector(".filter-form")
+
+            filterButton.classList.toggle("active")
+
+            if(!filterForm.classList.contains("active")) {
+                setTimeout(() => {
+                    filterForm.classList.add("active")
+                }, 300)
+            } else {
+                filterForm.classList.remove("active")
+            }
+
+            if(!filterButton.classList.contains("active")) {
                 const formFilter = this.shadow.querySelector("#filter-form")
                 const formData = Object.fromEntries(new FormData(formFilter))
                 const params = new URLSearchParams(formData).toString();
 
-                console.log(params)
 
                 fetch(`http://localhost:8080/api/admin/users?${params}`)
                 .then( async (response) => {
                     if(response.ok) {
                         const filterData = await response.json();
                         this.filterData = filterData
+                        console.log(this.filterData)
                     } else {
                         throw new Error("error: " + response.status);
                     }
                 })
                 .then(() => {
-
-                    filterButton.classList.toggle("active")
-
                     document.dispatchEvent(new CustomEvent('filterResults', {
                         detail: {
                             data: this.filterData
-        
                         }
-                    }));
+                    }))
+  
 
                 }).catch((error) => {
                     console.error(error)
                 })
-            }else{
-                const filterForm = this.shadow.querySelector(".filter-form")
+            }
+            else{
+                const formFilter = this.shadow.querySelector("#filter-form")
+                const formFilerContainer = this.shadow.querySelector(".filter-form")
 
-                filterButton.classList.toggle("active")
-    
-                if(filterForm.classList.contains("active")) {
-                    filterForm.classList.remove("active")
+                filterButton.classList.add("active");
+
+                if (formFilter.classList.contains("active")) {
+                    formFilerContainer.classList.remove("active");
                     setTimeout(() => {
-                        filterForm.classList.remove("active")
-                    }, 300)
-                }
-                else {
+                    formFilter.classList.remove("active");
+                    }, 300);
+                } else {
+                    formFilerContainer.classList.add("active");
                     setTimeout(() => {
-                        filterForm.classList.add("active")
-                    }, 300)
+                    formFilter.classList.add("active");
+                    }, 300);
                 }
             }
-        })
+        });
     }
 
 }
