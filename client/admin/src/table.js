@@ -52,6 +52,10 @@ class InfoCard extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
+            :host {
+                width: 35%;
+            }
+
             .cards{
                 width: 60vh;
             }

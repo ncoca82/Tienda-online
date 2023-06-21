@@ -12,8 +12,7 @@ class Form extends HTMLElement {
         document.addEventListener("loadData", async event => {
             await this.loadData(event.detail.id)
         });
-    }  
-    
+    }
     async attributeChangedCallback (name, oldValue, newValue) {
         await this.render()
     }
@@ -44,8 +43,13 @@ class Form extends HTMLElement {
         this.shadow.innerHTML = 
         `
         <style>
+            :host {
+                width: 60%;
+            }
+
             .form{
                 width: 100%;
+        
             }
             .form-header{
                 background-color: white;
@@ -61,7 +65,7 @@ class Form extends HTMLElement {
                 max-width: 100%;
                 overflow:hidden;
             }
-            .form-tabs :first-child{
+            .form-tabs button:first-child{
                 color: white;
                 background-color: hsl(207, 85%, 69%);
                 height: 4rem;
@@ -80,16 +84,40 @@ class Form extends HTMLElement {
                 height: 4rem;
                 fill: hsl(207, 85%, 69%);
             }
-            .form-tabs p{
+            .form-tabs button{
                 font-family: 'Roboto', sans-serif;
                 font-weight: 600;
                 font-size: 24px;
                 color:#808080 ;
                 cursor: pointer;
+                height: 100%;
                 margin: 0;
-                padding: 0;
+                padding: 0 1.5rem;
             }
 
+            .form-tabs button.active {
+                color: hsl(209, 100%, 50%);
+                border-bottom: none;
+                border-top-color: $primary-color;
+                border-right-color: transparent;
+                border-left-color: transparent;
+            }
+           
+            .form-tabs button:hover {
+                background-color: hsl(0, 0%, 87%);
+                border-top-color:hsl(209, 100%, 50%);
+                color: hsl(209, 100%, 50%);
+            }
+
+            .tab-contents > div{
+                display: none;
+                width: 100%;
+            }
+           
+            .tab-contents > div.active{
+                display: block;
+            }
+           
             button{
                 overflow: hidden;
                 border: none;
@@ -131,15 +159,29 @@ class Form extends HTMLElement {
                 font-size: 18px;
                 font-family: 'Roboto', sans-serif;
             }
+            .add-image{
+               
+            }
+            .add-image active{
+                
+            }
+            .add-image button{
+                width:6%;
+                margin:0 50%;
+                padding: 1.5rem;
+                background-color: white;
+                
+            }
+
         </style>
         <div class="form">
             <div class="form-header">
                 <div class="form-tabs">
-                    <button>
-                        <p>Principal</p>
+                    <button class="active" data-tab="main">
+                        Principal
                     </button>
-                    <button>    
-                        <p>Imágenes</p>
+                    <button data-tab="images">    
+                        Imágenes
                     </button>    
                 </div>
                 <div class="form-icons">
@@ -156,30 +198,45 @@ class Form extends HTMLElement {
                 </ul>
             </div>
             <form>
-                <input type="hidden" name="id"/>
-                <div class="section-inputs">
-                    <label class="section-inputs-form" for="name">
-                        <span>Nombre</span>
-                        <input type="text" name="name" />
-                    </label>
-                    <label class="section-inputs-form" for="email">
-                        <span>Email</span>
-                        <input type="email" name="email" data-validate="email" />
-                    </label>
-                </div>      
-                <div class="section-inputs">    
-                    <label class="section-inputs-form" for="password">
-                        <span>Password</span>
-                        <input type="password" name="password"/>
-                    </label>
-                    <label class="section-inputs-form" for="password">
-                        <span>Repeat password</span>
-                        <input type="password" name="repeat-password"/>
-                    </label>
+                <div class="tab-contents">
+                    <div class="tab-content active" data-tab="main">
+                        <input type="hidden" name="id"/>
+                        <div class="section-inputs">
+                            <label class="section-inputs-form" for="name">
+                                <span>Nombre</span>
+                                <input type="text" name="name" />
+                            </label>
+                            <label class="section-inputs-form" for="email">
+                                <span>Email</span>
+                                <input type="email" name="email" data-validate="email" />
+                            </label>
+                        </div>      
+                        <div class="section-inputs">    
+                            <label class="section-inputs-form" for="password">
+                                <span>Password</span>
+                                <input type="password" name="password"/>
+                            </label>
+                            <label class="section-inputs-form" for="password">
+                                <span>Repeat password</span>
+                                <input type="password" name="repeat-password"/>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="tab-content" data-tab="images">
+                        <div class="add-image">
+                            <h2>Add Image</h2>
+                            <button type="button" id="button-image">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </form>
+            
         </div>
     `;
+
+    this.renderTabs();
 
         const form = this.shadow.querySelector('form');
         const sendFormButton = this.shadow.getElementById('send-form-button');
@@ -235,6 +292,21 @@ class Form extends HTMLElement {
 
         });
     }
+
+    renderTabs = () => {
+        const tabsHeader = this.shadow.querySelector('.form-tabs');
+        const tabContents = this.shadow.querySelector('.tab-contents');
+        const tabs = tabsHeader.querySelectorAll('button');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabsHeader.querySelector('.active').classList.remove('active');
+                tabContents.querySelector('.active').classList.remove('active');
+                tab.classList.add('active');
+                tabContents.querySelector(`[data-tab="${tab.dataset.tab}"]`).classList.add('active');
+            });
+        });
+    };
 
     validateForm = elements => {
         
@@ -309,6 +381,7 @@ class Form extends HTMLElement {
 
         return validForm;
     };
+
 }
 
 customElements.define('form-component', Form);

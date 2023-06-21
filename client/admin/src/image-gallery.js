@@ -7,7 +7,7 @@ class ImageGallery extends HTMLElement {
 
     async connectedCallback () {
         document.addEventListener("openModal", event => {
-            const modal = this.shadow.querySelector(".modal");
+            const modal = this.shadow.querySelector(".modal-open");
             modal.classList.toggle('active');
 
             this.id = event.detail.id;
@@ -33,7 +33,7 @@ class ImageGallery extends HTMLElement {
                 z-index: -1;
             }
             
-            .modal.active{
+            .modal-open active{
                 opacity: 1;
                 z-index: 5;
             }
@@ -90,7 +90,7 @@ class ImageGallery extends HTMLElement {
                 fill: hsl(0, 0%, 0%);
             } 
         </style>
-        <div class="modal active">
+        <div class="modal">
             <div class="modal-open">
                 <h5>Añadir imágenes</h5>
                 <div class="image">
@@ -103,16 +103,13 @@ class ImageGallery extends HTMLElement {
         </div>
         `;
 
-        const modal = this.shadow.querySelectorAll('.modal');
+        const modal = this.shadow.querySelectorAll('.modal-open');
         const closeButtons = this.shadow.querySelectorAll('.close-button');
 
 
 
-        closeButtons.forEach((closeButton) => {
-            closeButton.addEventListener('click', () => {
-                modal.classList.toggle('active');
-            });
-        });
+        
+    
     }
 }
 
