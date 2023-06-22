@@ -102,7 +102,7 @@ class Form extends HTMLElement {
                 border-right-color: transparent;
                 border-left-color: transparent;
             }
-           
+
             .form-tabs button:hover {
                 background-color: hsl(0, 0%, 87%);
                 border-top-color:hsl(209, 100%, 50%);
@@ -113,11 +113,11 @@ class Form extends HTMLElement {
                 display: none;
                 width: 100%;
             }
-           
+
             .tab-contents > div.active{
                 display: block;
             }
-           
+
             button{
                 overflow: hidden;
                 border: none;
@@ -160,17 +160,28 @@ class Form extends HTMLElement {
                 font-family: 'Roboto', sans-serif;
             }
             .add-image{
-               
+                display:flex;
+                flex-direction: column;
+                align-items: flex-start;
+        
             }
             .add-image active{
                 
             }
             .add-image button{
                 width:6%;
-                margin:0 50%;
+                margin-left: 5%;
                 padding: 1.5rem;
                 background-color: white;
                 
+            }
+            .button-image:hover{
+                cursor:pointer;
+            }
+
+            .add-image h2{
+                color:white;
+                font-size: 30px;
             }
 
         </style>
@@ -223,11 +234,17 @@ class Form extends HTMLElement {
                         </div>
                     </div>
                     <div class="tab-content" data-tab="images">
-                        <div class="add-image">
-                            <h2>Add Image</h2>
-                            <button type="button" id="button-image">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg>
-                            </button>
+                        <div class="row">
+                            <div class="form-element">
+                                <div class="form-element-label">
+                                    <label for="file">
+                                        Añadir imagen
+                                    </label>
+                                </div>
+                                <div class="form-element-input">
+                                    <image-button-component></image-button-component>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -236,7 +253,7 @@ class Form extends HTMLElement {
         </div>
     `;
 
-    this.renderTabs();
+        this.renderTabs();
 
         const form = this.shadow.querySelector('form');
         const sendFormButton = this.shadow.getElementById('send-form-button');
@@ -292,6 +309,8 @@ class Form extends HTMLElement {
 
         });
     }
+
+
 
     renderTabs = () => {
         const tabsHeader = this.shadow.querySelector('.form-tabs');

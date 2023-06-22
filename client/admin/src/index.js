@@ -4,4 +4,5 @@ import './table.js';
 import './form.js';
 import './modal.js';
 import './login.js';
-import './image-gallery.js';
+import './image-modal.js';
+import './image-button.js';
