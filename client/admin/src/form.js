@@ -165,9 +165,6 @@ class Form extends HTMLElement {
                 align-items: flex-start;
         
             }
-            .add-image active{
-                
-            }
             .add-image button{
                 width:6%;
                 margin-left: 5%;
