@@ -1,3 +1,5 @@
+import { API_URL } from '../config/config.js'
+
 class Login extends HTMLElement {
     constructor() {
         super();
@@ -94,7 +96,7 @@ class Login extends HTMLElement {
     }
 
     async function login(username, password) {
-        const url = `http://127.0.0.1:8080/api/auth/users/signin${id}`; 
+        const url = `${ API_URL }/api/auth/users/signin${id}`; 
 
     try {
             const response = await fetch(url, {

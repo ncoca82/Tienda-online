@@ -1,3 +1,5 @@
+import { API_URL } from '../config/config.js'
+
 class Form extends HTMLElement {
 
     constructor() {
@@ -19,7 +21,7 @@ class Form extends HTMLElement {
 
     async loadData(id) {
         try {
-            const response = await fetch(`http://127.0.0.1:8080/api${this.getAttribute('url')}/${id}`)
+            const response = await fetch(`${ API_URL }/api${this.getAttribute('url')}/${id}`)
             this.data = await response.json()
 
             Object.entries(this.data).forEach( ([key, value]) => {
@@ -250,10 +252,15 @@ class Form extends HTMLElement {
         </div>
     `;
 
+        this.renderButtons();
         this.renderTabs();
+    }
+
+    renderButtons= () => {
 
         const form = this.shadow.querySelector('form');
         const sendFormButton = this.shadow.getElementById('send-form-button');
+        const cleanButton = this.shadow.getElementById('clean-button');
 
         sendFormButton.addEventListener('click', event => {
 
@@ -266,7 +273,7 @@ class Form extends HTMLElement {
             let id = form.elements.id.value;
             let formData = new FormData(form);
             let formDataJson = Object.fromEntries(formData.entries());
-            let url = id ? `http://127.0.0.1:8080/api/admin/users/${id}` : `http://127.0.0.1:8080/api/admin/users`
+            let url = id ? `${ API_URL }/api/admin/users/${id}` : `${ API_URL }/api/admin/users`
             let method = id ? 'PUT':'POST'
             delete formDataJson.id
             
@@ -305,7 +312,11 @@ class Form extends HTMLElement {
             });
 
         });
-    }
+        cleanButton.addEventListener('click', event => {
+            event.preventDefault();
+            form.reset();
+    });
+}
 
 
 
@@ -396,8 +407,7 @@ class Form extends HTMLElement {
         console.log(validForm);
 
         return validForm;
-    };
-
-}
+        };
+    }    
 
 customElements.define('form-component', Form);

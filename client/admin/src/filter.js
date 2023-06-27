@@ -1,3 +1,5 @@
+import { API_URL } from '../config/config.js'
+
 class Filter extends HTMLElement {
 
     constructor() {
@@ -150,7 +152,7 @@ class Filter extends HTMLElement {
                 const params = new URLSearchParams(formData).toString();
 
 
-                fetch(`http://localhost:8080/api/admin/users?${params}`)
+                fetch(`${API_URL}/api/admin/users?${params}`)
                 .then( async (response) => {
                     if(response.ok) {
                         const filterData = await response.json();
@@ -166,7 +168,6 @@ class Filter extends HTMLElement {
                             data: this.filterData
                         }
                     }))
-  
 
                 }).catch((error) => {
                     console.error(error)

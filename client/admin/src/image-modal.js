@@ -1,3 +1,5 @@
+import { API_URL } from '../config/config.js'
+
 class ImageModal extends HTMLElement {
 
     constructor() {
@@ -34,83 +36,93 @@ class ImageModal extends HTMLElement {
                 
                 .gallery-modal.active{
                     opacity: 1;
-                    z-index: 1;
+                    z-index: 10;
                     position: absolute;
                     display: flex;
                     flex-direction: column;  
-                    justify-content: flex-start;
+                    justify-content: space-between;
                 }
 
                 .gallery-modal.active h5{
                     font-family: "Poppins", sans-serif;
                     font-size: 1.5rem;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    margin: 2rem;
                 }
                     
+                .modal-tabs {
+                    display: flex;
+                    gap: 1rem;
+                    align-self: flex-start;
+                    top: 0;
+                    left: 0;
+                    margin: 6.5rem;
+                }
+    
+                .modal-tabs button {
+                    padding: 0.5rem 1rem;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 1.2rem;
+                    font-family: "Poppins", sans-serif;
+                    background-color: rgb(249, 249, 249);
+                }
+    
+                .modal-tabs button.active {
+                    background-color: rgb(109,183,243);
+    
+                }
+    
+                .tab-contents{
+                    height: 100%;
+                    margin-top: 7rem;
+                }
+    
+                .tab-content{
+                    display: none;
+                }
+    
+                .tab-content.active{
+                    display: block;
+                }
+    
                 .upload {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    height: 100%;
-                    
-                }  
-                
+                }
+    
                 .upload input {
                     padding: 0.5rem 2rem;
                     border: none;
                     border-radius: 5px;
                     cursor: pointer;
                     font-size: 1rem;
-                    font-family: "Poppins", sans-serif;    
+                    font-family: "Poppins", sans-serif;
+                    color: hsl(0, 0%, 100%);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
-
+    
                 .close-button {
                     position: absolute;
                     top: 10px;
                     right: 10px;
                     cursor: pointer;
                 }
-                
+    
                 .close-button svg {
                     fill: hsl(0, 0%, 40%);
                     width: 1.5rem;
                     height: 1.5rem;
                 }
-                
-                .close-button svg:hover{
+    
+                .close-button:hover svg {
                     fill: hsl(0, 0%, 0%);
-                } 
-                .modal-tabs{
-                    margin-left:5%;
-                    
-                }
-                .tabs-content{
-                    height: 100%;
-                }
-                .gallery-modal h5{
-                    margin-left:5%
-                }
-                .modal-tabs button {
-                    cursor: pointer;
-                    padding: 0.5rem 2rem;
-                    border: none;
-                    cursor: pointer;
-                    font-size: 1rem;
-                    font-family: "Poppins", sans-serif; 
-                }
-                .modal-tabs button:hover {
-                    background-color: white;
-                }
-                .tabs-content{
-                    backgorund-color:white;
-                    z-index:-1;
-                    text-align: center;
-                    display:none;
-                }
-                .tabs-content active{
-                    position:absolute;
-                    z-index: 5;
-                    height: 100%;
-                    display: block;
                 }
 
             </style>
@@ -138,6 +150,7 @@ class ImageModal extends HTMLElement {
             </div>
             `;
             this.renderTabs();
+            this.uploadImage();
     }
 
     renderTabs () {
@@ -153,7 +166,37 @@ class ImageModal extends HTMLElement {
                 tabContents.querySelector(`[data-tab="${tab.dataset.tab}"]`).classList.add('active');
             });
         });
+
+        const closeButton = this.shadow.querySelector(".close-button")
+
+        closeButton.addEventListener("click", () => {
+            const modal = this.shadow.querySelector('.gallery-modal');
+            modal.classList.toggle('active');
+        })
     };
-}
+
+        uploadImage = async () => {
+
+            const uploadButton = this.shadow.querySelector('.upload-image')
+    
+            uploadButton.addEventListener("change", async () => {
+    
+                let file = null
+    
+                console.log(file)
+    
+                let formData = new FormData()
+                formData.append('file', file)
+    
+                await fetch( `${ API_URL }/api/admin/images`, {
+                    headers: {
+                        Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')
+                    },
+                    body: formData
+                })
+            })
+        }
+    }
+    
 
 customElements.define('image-modal-component', ImageModal);
