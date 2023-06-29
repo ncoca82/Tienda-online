@@ -144,7 +144,7 @@ class ImageModal extends HTMLElement {
                         <p>Hola!</p>
                     </div>
                     <div class="tab-content" data-tab="upload">
-                        <input type="file"></input>
+                        <input type="file" class="upload-image"></input>
                     </div>
                 </div>
             </div>
@@ -175,28 +175,34 @@ class ImageModal extends HTMLElement {
         })
     };
 
-        uploadImage = async () => {
+    uploadImage = async () => {
 
-            const uploadButton = this.shadow.querySelector('.upload-image')
+        const uploadButton = this.shadow.querySelector('.upload-image')
     
-            uploadButton.addEventListener("change", async () => {
+        uploadButton.addEventListener("change", async event => {
     
-                let file = null
-    
-                console.log(file)
-    
-                let formData = new FormData()
-                formData.append('file', file)
-    
-                await fetch( `${ API_URL }/api/admin/images`, {
+            let file = event.target.files[0]
+
+            let formData = new FormData()
+            formData.append('file', file)
+
+            try{
+
+                const response = await fetch( `${ API_URL }/api/admin/image`, {
+                    method: 'POST',
                     headers: {
                         Authorization: 'Bearer ' + sessionStorage.getItem('accessToken')
                     },
                     body: formData
                 })
-            })
-        }
+
+                const data = await response.json()
+
+            }catch(err) {
+
+            }
+        })
     }
-    
+}    
 
 customElements.define('image-modal-component', ImageModal);

@@ -23,10 +23,6 @@ class InfoCard extends HTMLElement {
             this.data = event.detail.data
             await this.render()
         });
-
-
-
-
     }
 
     async attributeChangedCallback (name, oldValue, newValue) {
