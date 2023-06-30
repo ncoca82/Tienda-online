@@ -3,16 +3,17 @@ const ImageService = require('../../services/image-service')
 const Image = db.Image;
 
 exports.create = async (req, res) => {
-  try {
-    const result = await new ImageService().uploadImage(req.files)
+    try {
+        const result = await new ImageService().uploadImage(req.files)
 
     res.status(200).send(result)
     } catch (error) {
+
     res.status(500).send({
         message: error.message || 'Algún error ha surgido al insertar el dato.',
         errors: error.errors
-    })
-  }
+        })
+    }
 }
 
 exports.findAll = (req, res) => {

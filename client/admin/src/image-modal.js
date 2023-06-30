@@ -82,11 +82,25 @@ class ImageModal extends HTMLElement {
                 }
     
                 .tab-content{
-                    display: none;
+
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    z-index:-3;
+                    align-items: center;
+                    transform: translate(-50%, -50%);
+                    opacity: 0
                 }
     
                 .tab-content.active{
-                    display: block;
+                    position: absolute;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index:10;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    opacity: 1
                 }
     
                 .upload {
@@ -141,7 +155,7 @@ class ImageModal extends HTMLElement {
                 </div>
                 <div class="tab-contents">
                     <div class="tab-content active" data-tab="galeria">
-                        <p>Hola!</p>
+                        <p>Galería de imágenes</p>
                     </div>
                     <div class="tab-content" data-tab="upload">
                         <input type="file" class="upload-image"></input>

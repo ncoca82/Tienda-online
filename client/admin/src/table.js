@@ -33,7 +33,12 @@ class InfoCard extends HTMLElement {
 
     loadData = async() => {
         try {
-            const response = await fetch(`${ API_URL }/api${this.getAttribute('url')}`);
+            const response = await fetch(`${ API_URL }/api${this.getAttribute('url')}`, {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`
+                }
+            });
+            
             const data = await response.json()
             this.data = data;
             this.currentPage = data.meta.currentPage

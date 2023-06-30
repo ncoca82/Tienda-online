@@ -281,6 +281,7 @@ class Form extends HTMLElement {
                 method: method,
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify(formDataJson)
 

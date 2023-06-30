@@ -14,13 +14,13 @@ module.exports = class ImageService {
         for (const file of files) {
 
             const fileName = file.originalname.replace(/[\s_]/g, '-');
-            
+
             const tmpFileName = path.join(__dirname, `../storage/tmp/${file.originalname}`);
             const {name}  = path.parse(fileName);
         
             // try {
-            //   await fs.promises.access(path.join(__dirname, `../storage/images/gallery/original/${name}`));
-            //   console.log(tmpFileName);
+            //     await fs.promises.access(path.join(__dirname, `../storage/images/gallery/original/${name}`));
+            //     console.log(tmpFileName);
             // } catch (err) {
             
             // }

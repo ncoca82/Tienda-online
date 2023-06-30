@@ -1,5 +1,3 @@
-seeders/20220608175141-users.js
-
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
@@ -9,7 +7,7 @@ module.exports = {
       {
         id: 1,
         name: 'Admin',
-        email: 'carlossedagambin@gmail.com',
+        email: 'ncoca28@gmail.com',
         password: '$2a$12$c6kgy060ZyKXpJD9RE59xO74VlYa2B4wTpor.gb3hBKgrpMs9sjv.',
         createdAt: new Date(),
         updatedAt: new Date(),
