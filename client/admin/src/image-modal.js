@@ -31,7 +31,7 @@ class ImageModal extends HTMLElement {
                     z-index: -1;
                     top: 50%;
                     left: 50%;
-                    transform: translate(-50%, -50%)
+                    transform: translate(-50%, -50%);
                 }
                 
                 .gallery-modal.active{
@@ -54,31 +54,39 @@ class ImageModal extends HTMLElement {
                     
                 .modal-tabs {
                     display: flex;
-                    gap: 1rem;
                     align-self: flex-start;
+                    width: 100%;
                     top: 0;
                     left: 0;
-                    margin: 6.5rem;
+                    border-bottom: 1px solid #ddd;
                 }
     
                 .modal-tabs button {
                     padding: 0.5rem 1rem;
                     border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
+                    cursor: pointer;    
+                    margin-top:6rem;
                     font-size: 1.2rem;
                     font-family: "Poppins", sans-serif;
-                    background-color: rgb(249, 249, 249);
+                    background-color: transparent;
+                }
+                .modal-tabs button:first-child{
+                    margin-left: 2rem;
                 }
     
                 .modal-tabs button.active {
                     background-color: rgb(109,183,243);
+                    color: white;
     
                 }
     
                 .tab-contents{
                     height: 100%;
+                    width: 100%;
                     margin-top: 7rem;
+                    display: flex;
+                    border-bottom: 1px solid #ddd;
+
                 }
     
                 .tab-content{
@@ -89,18 +97,31 @@ class ImageModal extends HTMLElement {
                     z-index:-3;
                     align-items: center;
                     transform: translate(-50%, -50%);
-                    opacity: 0
+                    opacity: 0;
                 }
     
                 .tab-content.active{
+                    width: 60%;
                     position: absolute;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     z-index:10;
-                    left: 50%;
                     transform: translate(-50%, -50%);
-                    opacity: 1
+                    opacity: 1;
+                    left:40%
+                }
+                .tab-inputs{
+                    display: flex;
+                    flex-direction: column;
+                    position: absolute;
+                    width: 30%;
+                    height: 100%;
+                    left: 80%;
+                }
+                .tab-inputs input{
+                    display: flex;
+                    flex-direction: column;
                 }
     
                 .upload {
@@ -138,13 +159,32 @@ class ImageModal extends HTMLElement {
                 .close-button:hover svg {
                     fill: hsl(0, 0%, 0%);
                 }
+                .footer{
+                    display: flex;
+                    justify-content: flex-end;
+                }
+                .footer button {
+                    padding: 1rem;
+                    margin: 1.5rem 2rem;
+                    color: hsl(0, 0%, 100%);
+                    background-color:rgb(109,183,243);
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 1rem;
+                    
+                }
 
             </style>
             <div class="gallery-modal">
-                <h5>Añadir imagen</h5>
-                <div class="close-button modal-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>window-close</title><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>
-                </div>
+                <div class="modal-header">
+                    <div>
+                        <h5>Añadir imagen</h5>
+                    </div>
+                    <div class="close-button modal-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>window-close</title><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>
+                    </div>
+                </div>    
                 <div class="modal-tabs">
                     <button class="active" data-tab="galeria">
                         Galería
@@ -154,12 +194,27 @@ class ImageModal extends HTMLElement {
                     </button>    
                 </div>
                 <div class="tab-contents">
-                    <div class="tab-content active" data-tab="galeria">
-                        <p>Galería de imágenes</p>
+                    <div class="tab-buttons">
+                        <div class="tab-content active" data-tab="galeria">
+                            <p>Galería de imágenes</p>
+                        </div>
+                        <div class="tab-content" data-tab="upload">
+                            <input type="file" class="upload-image"></input>
+                        </div>
                     </div>
-                    <div class="tab-content" data-tab="upload">
-                        <input type="file" class="upload-image"></input>
-                    </div>
+                    <div class="tab-inputs">
+                        <label class="section-inputs-form" for="name">
+                            <span>Título</span>
+                            <input type="text" name="name" />
+                        </label>
+                        <label class="section-inputs-form" for="email">
+                            <span>Texto alternativo</span>
+                            <input type="email" name="email" data-validate="email" />
+                        </label>
+                    </div>    
+                </div>
+                <div class="footer">
+                    <button>Elegir Imagen</button>
                 </div>
             </div>
             `;

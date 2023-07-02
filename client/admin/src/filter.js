@@ -27,12 +27,14 @@ class Filter extends HTMLElement {
             }
 
             .filter-button {
-                width: 100%;
+                width: 95%;
                 display: flex;
                 justify-content: center;
                 cursor: pointer;
                 background-color: white;
                 transition: 0.5s;
+                padding:10px;
+                margin-left: 3rem;
             }
 
             .filter-button.active {
@@ -55,11 +57,11 @@ class Filter extends HTMLElement {
             .filter-form {
                 width: 100%;
                 position: absolute;
-                z-index: -1
+                z-index: -5;
             }
 
             .filter-form.active {
-                z-index: 0
+                z-index: 1
             }
 
             hero {
@@ -67,6 +69,7 @@ class Filter extends HTMLElement {
                 font-family: "Poppins", sans-serif;
                 font-size: 1.5rem;
                 font-weight: 500;
+                margin-left: 3rem;
             }
 
             .filter-form form {

@@ -68,12 +68,15 @@ class Form extends HTMLElement {
                 overflow:hidden;
             }
             .form-tabs button:first-child{
-                color: white;
-                background-color: hsl(207, 85%, 69%);
+                color: #808080;
+                background-color: hsl(0, 0%, 100%);
                 height: 4rem;
                 display: flex;
                 align-items: center;
                 padding: 0 1.5rem;
+            }
+            .form-tabs button:first-child.active{
+                background-color: hsl(207, 85%, 69%);
             }
             .form-icons{
                 display: flex;
@@ -91,14 +94,16 @@ class Form extends HTMLElement {
                 font-weight: 600;
                 font-size: 24px;
                 color:#808080 ;
+                background-color:hsl(0, 0%, 100%);
                 cursor: pointer;
                 height: 100%;
                 margin: 0;
-                padding: 0 1.5rem;
+                padding: 0 1rem;
             }
 
             .form-tabs button.active {
-                color: hsl(209, 100%, 50%);
+                color: hsl(0, 0%, 100%);
+                background-color: hsl(207, 85%, 69%);
                 border-bottom: none;
                 border-top-color: $primary-color;
                 border-right-color: transparent;
@@ -106,7 +111,6 @@ class Form extends HTMLElement {
             }
 
             .form-tabs button:hover {
-                background-color: hsl(0, 0%, 87%);
                 border-top-color:hsl(209, 100%, 50%);
                 color: hsl(209, 100%, 50%);
             }
