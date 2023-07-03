@@ -83,14 +83,11 @@ class ImageModal extends HTMLElement {
                 .tab-contents{
                     height: 100%;
                     width: 100%;
-                    margin-top: 7rem;
                     display: flex;
                     border-bottom: 1px solid #ddd;
-
                 }
     
                 .tab-content{
-
                     position: relative;
                     display: flex;
                     justify-content: center;
@@ -98,10 +95,11 @@ class ImageModal extends HTMLElement {
                     align-items: center;
                     transform: translate(-50%, -50%);
                     opacity: 0;
+                    margin-top: 10%;
+                    width: 60%;
                 }
     
                 .tab-content.active{
-                    width: 60%;
                     position: absolute;
                     display: flex;
                     justify-content: center;
@@ -115,13 +113,29 @@ class ImageModal extends HTMLElement {
                     display: flex;
                     flex-direction: column;
                     position: absolute;
-                    width: 30%;
-                    height: 100%;
-                    left: 80%;
+                    width: 25%;
+                    height: 75%;
+                    left: 75%;
+                    padding-top:1rem;
+                    background-color:rgb(241,241,241);
                 }
                 .tab-inputs input{
                     display: flex;
                     flex-direction: column;
+                    padding: 0.3rem 6rem;
+                }
+                .tab-inputs label{
+                    margin:1rem 3rem;
+                    padding: 1rem;
+                }
+                .section-inputs-form{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                }
+                .section-inputs-form span{
+                    font-size: 20px;
+                    color: rgb(55,55,55);
                 }
     
                 .upload {
@@ -176,7 +190,7 @@ class ImageModal extends HTMLElement {
                 }
 
             </style>
-            <div class="gallery-modal">
+            <div class="gallery-modal active">
                 <div class="modal-header">
                     <div>
                         <h5>Añadir imagen</h5>
@@ -203,13 +217,13 @@ class ImageModal extends HTMLElement {
                         </div>
                     </div>
                     <div class="tab-inputs">
-                        <label class="section-inputs-form" for="name">
+                        <label class="section-inputs-form">
                             <span>Título</span>
                             <input type="text" name="name" />
                         </label>
-                        <label class="section-inputs-form" for="email">
+                        <label class="section-inputs-form">
                             <span>Texto alternativo</span>
-                            <input type="email" name="email" data-validate="email" />
+                            <input type="text" />
                         </label>
                     </div>    
                 </div>
@@ -252,6 +266,8 @@ class ImageModal extends HTMLElement {
     
             let file = event.target.files[0]
 
+            console.log(file)
+
             let formData = new FormData()
             formData.append('file', file)
 
@@ -265,7 +281,13 @@ class ImageModal extends HTMLElement {
                     body: formData
                 })
 
-                const data = await response.json()
+                // const images = await response.json()
+
+                // images.forEach( image => {
+                //     let image = document.createElement('div');
+                //     image.classList.add('gallery')
+                //     card.appendChild(cardInfo);
+                // });
 
             }catch(err) {
 

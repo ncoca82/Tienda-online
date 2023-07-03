@@ -6,10 +6,10 @@ exports.create = async (req, res) => {
     try {
         const result = await new ImageService().uploadImage(req.files)
 
-    res.status(200).send(result)
-    } catch (error) {
+        res.status(200).send(result)
 
-    res.status(500).send({
+    } catch (error) {
+        res.status(500).send({
         message: error.message || 'Algún error ha surgido al insertar el dato.',
         errors: error.errors
         })
