@@ -189,6 +189,17 @@ class ImageModal extends HTMLElement {
                     
                 }
 
+                #gallery-container {
+                    display: grid;
+                  }
+                  
+                  #gallery-container img {
+                    width: 100px; 
+                    height: auto; 
+                    margin-right: 10px; /* Espacio entre imágenes */
+                  }
+                  
+
             </style>
             <div class="gallery-modal active">
                 <div class="modal-header">
@@ -209,7 +220,7 @@ class ImageModal extends HTMLElement {
                 </div>
                 <div class="tab-contents">
                     <div class="tab-buttons">
-                        <div class="tab-content active" data-tab="galeria">
+                        <div class="tab-content active" id="gallery-container" data-tab="galeria">
                             <p>Galería de imágenes</p>
                         </div>
                         <div class="tab-content" data-tab="upload">
@@ -281,13 +292,14 @@ class ImageModal extends HTMLElement {
                     body: formData
                 })
 
-                // const images = await response.json()
+                const imageGalleries = await response.json()
+                const galleryContainer = document.getElementById('gallery-container')
 
-                // images.forEach( image => {
-                //     let image = document.createElement('div');
-                //     image.classList.add('gallery')
-                //     card.appendChild(cardInfo);
-                // });
+                imageGalleries.forEach( imageGallery => {
+                    let imageGallery = document.createElement('div');
+                    imageGallery.classList.add('gallery');
+                    galleryContainer.appendChild(imageGallery)
+                });
 
             }catch(err) {
 
