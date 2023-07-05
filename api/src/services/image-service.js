@@ -15,28 +15,23 @@ module.exports = class ImageService {
 
         for (const file of files) {
 
-            const fileName = file.originalname.replace(/[\s_]/g, '-');
+            const originalFileName = file.originalname.replace(/[\s_]/g, '-');
+            const {name}  = path.parse(originalFileName);
+
+            const timestamp = Date.now();
+            const newFileName = `${name}_${timestamp}.webp`;
 
             const tmpFileName = path.join(__dirname, `../storage/tmp/${file.originalname}`);
-            const {name}  = path.parse(fileName);
-        
-            // try {
-            //     await fs.promises.access(path.join(__dirname, `../storage/images/gallery/original/${name}`));
-                
-            // } catch (err) {
-                
-            // }
-
-            console.log(tmpFileName)
+            const originalFilePath = path.join(__dirname, `../storage/images/gallery/original/${newFileName}`);
 
             await sharp(tmpFileName)
-            .webp({ lossless: true })
-            .toFile(path.join(__dirname,`../storage/images/gallery/original/${name}.webp`))
+                .webp({ lossless: true })
+                .toFile(path.join(__dirname,`../storage/images/gallery/original/${name}.webp`))
 
             await sharp(tmpFileName)
-            .resize(135, 135)
-            .webp({ lossless: true })
-            .toFile(path.join(__dirname, `../storage/images/gallery/thumbnail/${name}.webp`));
+                .resize(135, 135)
+                .webp({ lossless: true })
+                .toFile(path.join(__dirname, `../storage/images/gallery/thumbnail/${name}.webp`));
 
             fs.unlink(tmpFileName, (err) => {
                 if (err) {
@@ -46,7 +41,7 @@ module.exports = class ImageService {
                 }
             });
 
-            result.push(path.join(__dirname, `../storage/images/gallery/thumbnail/${name}.webp`));
+            result.push(originalFilePath);
         }
 
         return result;

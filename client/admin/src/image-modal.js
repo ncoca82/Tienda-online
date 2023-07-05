@@ -292,14 +292,15 @@ class ImageModal extends HTMLElement {
                     body: formData
                 })
 
-                const imageGalleries = await response.json()
+                const thumbnails = await response.json()
                 const galleryContainer = document.getElementById('gallery-container')
 
-                imageGalleries.forEach( imageGallery => {
-                    let imageGallery = document.createElement('div');
-                    imageGallery.classList.add('gallery');
-                    galleryContainer.appendChild(imageGallery)
-                });
+                thumbnails.forEach((thumbnail) => {
+                    let thumbnailImage = document.createElement('img');
+                    thumbnailImage.classList.add('gallery');
+                    thumbnailImage.src = thumbnail; 
+                    galleryContainer.appendChild(thumbnailImage);
+                    });
 
             }catch(err) {
 
