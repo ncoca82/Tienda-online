@@ -16,32 +16,31 @@ module.exports = class ImageService {
         for (const file of files) {
 
             const originalFileName = file.originalname.replace(/[\s_]/g, '-');
-            const {name}  = path.parse(originalFileName);
-
-            const timestamp = Date.now();
-            const newFileName = `${name}_${timestamp}.webp`;
+            let {name}  = path.parse(originalFileName);
 
             const tmpFileName = path.join(__dirname, `../storage/tmp/${file.originalname}`);
-            const originalFilePath = path.join(__dirname, `../storage/images/gallery/original/${newFileName}`);
+            let originalFilePath = path.join(__dirname, `../storage/images/gallery/thumbnail/${name}.webp`);
+            
+            name = await fs.access(originalFilePath).then( async () => {
+                const timestamp = Date.now();
+                const newFileName = `${name}-${timestamp}.webp`;
+                return newFileName;
+            }).catch(() => {
+                return `${name}.webp`;
+            });
 
             await sharp(tmpFileName)
                 .webp({ lossless: true })
-                .toFile(path.join(__dirname,`../storage/images/gallery/original/${name}.webp`))
+                .toFile(path.join(__dirname,`../storage/images/gallery/original/${name}`))
 
             await sharp(tmpFileName)
                 .resize(135, 135)
                 .webp({ lossless: true })
-                .toFile(path.join(__dirname, `../storage/images/gallery/thumbnail/${name}.webp`));
+                .toFile(path.join(__dirname, `../storage/images/gallery/thumbnail/${name}`));
 
-            fs.unlink(tmpFileName, (err) => {
-                if (err) {
-                    console.error('Error al eliminar la imagen temporal:', err);
-                } else {
-                    console.log('Imagen temporal eliminada con éxito.');
-                }
-            });
-
-            result.push(originalFilePath);
+            await fs.unlink(tmpFileName);
+        
+            result.push(name);
         }
 
         return result;

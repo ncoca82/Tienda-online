@@ -296,10 +296,12 @@ class ImageModal extends HTMLElement {
                 const galleryContainer = document.getElementById('gallery-container')
 
                 thumbnails.forEach((thumbnail) => {
+                    let thumbnailGallery = document.createElement('div')
                     let thumbnailImage = document.createElement('img');
-                    thumbnailImage.classList.add('gallery');
-                    thumbnailImage.src = thumbnail; 
+                    thumbnailGallery.classList.add('gallery');
+                    thumbnailImage.src = `${ API_URL }/api/admin/image/${imagethumbnail}`; 
                     galleryContainer.appendChild(thumbnailImage);
+                    console.log(thumbnail);
                     });
 
             }catch(err) {
