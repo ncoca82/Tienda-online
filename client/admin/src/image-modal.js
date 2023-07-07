@@ -191,15 +191,13 @@ class ImageModal extends HTMLElement {
 
                 #gallery-container {
                     display: grid;
-                  }
-                  
-                  #gallery-container img {
+                }
+                
+                #gallery-container img {
                     width: 100px; 
                     height: auto; 
-                    margin-right: 10px; /* Espacio entre imágenes */
-                  }
-                  
-
+                    margin-right: 10px;
+                }
             </style>
             <div class="gallery-modal active">
                 <div class="modal-header">
@@ -211,20 +209,20 @@ class ImageModal extends HTMLElement {
                     </div>
                 </div>    
                 <div class="modal-tabs">
-                    <button class="active" data-tab="galeria">
+                    <button data-tab="galeria">
                         Galería
                     </button>
-                    <button data-tab="upload">    
+                    <button class="active" data-tab="upload">    
                         Subir imagen
                     </button>    
                 </div>
                 <div class="tab-contents">
                     <div class="tab-buttons">
-                        <div class="tab-content active" id="gallery-container" data-tab="galeria">
-                            <p>Galería de imágenes</p>
-                        </div>
-                        <div class="tab-content" data-tab="upload">
+                        <div class="tab-content active" data-tab="upload">
                             <input type="file" class="upload-image"></input>
+                        </div>
+                        <div class="tab-content" id="gallery-container" data-tab="galeria">
+                            <p>Galería de imágenes</p>
                         </div>
                     </div>
                     <div class="tab-inputs">
@@ -277,8 +275,6 @@ class ImageModal extends HTMLElement {
     
             let file = event.target.files[0]
 
-            console.log(file)
-
             let formData = new FormData()
             formData.append('file', file)
 
@@ -299,9 +295,10 @@ class ImageModal extends HTMLElement {
                     let thumbnailGallery = document.createElement('div')
                     let thumbnailImage = document.createElement('img');
                     thumbnailGallery.classList.add('gallery');
-                    thumbnailImage.src = `${ API_URL }/api/admin/image/${imagethumbnail}`; 
-                    galleryContainer.appendChild(thumbnailImage);
-                    console.log(thumbnail);
+
+                    thumbnailImage.src = `${ API_URL }/api/admin/image/${thumbnails}`; 
+                    galleryContainer.appendChild(thumbnailGallery);
+                    thumbnailGallery.appendChild(thumbnailImage);
                     });
 
             }catch(err) {
