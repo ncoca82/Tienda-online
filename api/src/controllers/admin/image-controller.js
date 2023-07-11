@@ -52,7 +52,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
 
     const filename = req.params.filename;
-
+    const thumbnailPath = path.join(__dirname, `../storage/images/gallery/thumbnail/${filename}`);
     
 };
 
