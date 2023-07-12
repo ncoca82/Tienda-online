@@ -1,10 +1,19 @@
 const db = require("../../models");
 const User = db.User;
 const Op = db.Sequelize.Op;
+const TrackingService = db.TrackingService;
 
 exports.create = (req, res) => {
 
     User.create(req.body).then(data => {
+
+        Tracking.create({
+            userId: data.id,
+            resource: req.originalUrl,
+            method:req.method,
+            statusCode:200
+        });
+        console.log(hola)
 
         res.status(200).send(data);
 

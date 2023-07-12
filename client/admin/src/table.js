@@ -231,6 +231,7 @@ class InfoCard extends HTMLElement {
             loadDataButton.addEventListener("click", () => {
                 document.dispatchEvent(new CustomEvent('loadData', {
                     detail: {
+
                         id: loadDataButton.dataset.id
                     }
                 }));
