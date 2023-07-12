@@ -11,11 +11,11 @@ module.exports = {
       },
       userId: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'users',
-          key: 'id'
-        }
+        type: Sequelize.INTEGER
+      },
+      ip: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
       resource: {
         allowNull: false,
@@ -36,10 +36,16 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      deletedAt: {
+        allowNull: true,
+        type: Sequelize.DATE
       }
     });
   },
+
   down: async (queryInterface, Sequelize) => {
+
     await queryInterface.dropTable('tracking');
   }
 };

@@ -4,7 +4,6 @@ const dotenv = require('dotenv').config();
 const process = require('process');
 const db = require('../../models');
 const User = db.User;
-const TrackingService = require('../../services/tracking-service.js');
 
 exports.signin = async (req, res) => {
     try {
@@ -30,11 +29,6 @@ exports.signin = async (req, res) => {
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
             expiresIn: 86400
         });
-
-        const tracker = new TrackingService();
-        await tracker.userTracking(user.id, req.socket.remoteAddress, req.originalUrl, req.method, res.statusCode);
-
-        console.log(`Usuario ${user.id}`);
 
         res.status(200).send({
             id: user.id,

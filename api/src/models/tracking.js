@@ -11,6 +11,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: false
         },
+        ip: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         resource: {
             type: DataTypes.STRING,
             allowNull: false

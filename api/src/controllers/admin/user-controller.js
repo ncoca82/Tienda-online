@@ -1,7 +1,7 @@
 const db = require("../../models");
 const User = db.User;
 const Op = db.Sequelize.Op;
-const TrackingService = db.TrackingService;
+const TrackingService = require('../../services/tracking-service.js');
 
 exports.create = (req, res) => {
 
@@ -9,11 +9,11 @@ exports.create = (req, res) => {
 
         Tracking.create({
             userId: data.id,
+            ip: data.ip,
             resource: req.originalUrl,
             method:req.method,
             statusCode:200
         });
-        console.log(hola)
 
         res.status(200).send(data);
 
@@ -24,7 +24,7 @@ exports.create = (req, res) => {
     });
 };
 
-exports.findAll = (req, res) => {
+exports.findAll = async (req, res) => {
 
     let page = req.query.page || 1;
     let limit = parseInt(req.query.size) || 3;
@@ -47,13 +47,19 @@ exports.findAll = (req, res) => {
         offset: offset,
         order: [['createdAt', 'DESC']]
     })
-    .then(result => {
+    .then(async result => {
 
         result.meta = {
             total: result.count,
             pages: Math.ceil(result.count / limit),
             currentPage: page
         };
+
+
+        const tracker = new TrackingService();
+        await tracker.userTracking(User.id, req.socket.remoteAddress, req.originalUrl, req.method, res.statusCode);
+
+        console.log(`Usuario ${user.id}`);
 
         res.status(200).send(result);
 
